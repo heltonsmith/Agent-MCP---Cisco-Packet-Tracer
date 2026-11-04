@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# Cisco Packet Tracer MCP Server - Linux/macOS Automated Setup
+# Agent MCP - Cisco Packet Tracer - Linux/macOS Automated Setup
 # Desarrollado por: Ing. Helton Smith Bustos Sáez
 # Magíster en Full Stack | Experto en Ciberseguridad e Inteligencia Artificial
 # ==============================================================================
 
 echo "=============================================================================="
-echo "Instalando dependencias de Cisco Packet Tracer MCP Server..."
+echo "Instalando dependencias de Agent MCP - Cisco Packet Tracer..."
 echo "Desarrollado por: Ing. Helton Smith Bustos Sáez"
 echo "=============================================================================="
 

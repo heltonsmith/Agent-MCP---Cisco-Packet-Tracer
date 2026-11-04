@@ -1,6 +1,6 @@
 """
 ====================================================================================================
-PROYECTO: Cisco Packet Tracer MCP Server — Herramientas Extendidas de Automatización
+PROYECTO: Agent MCP - Cisco Packet Tracer — Herramientas Extendidas de Automatización
 DESCRIPCIÓN: Módulo de alta fidelidad que expande el servidor MCP con herramientas de nivel CCNA/CCNP:
              - Enrutamiento Dinámico: RIPv1/v2, EIGRP, OSPF multiárea, BGP, Rutas Estáticas.
              - Switching Avanzado: Router-on-a-Stick (802.1Q), EtherChannel (LACP/PAgP), Spanning Tree.

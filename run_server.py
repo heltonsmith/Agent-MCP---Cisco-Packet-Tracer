@@ -1,6 +1,6 @@
 """
 ====================================================================================================
-PROYECTO: Cisco Packet Tracer MCP Server (Live Real-Time Automation)
+PROYECTO: Agent MCP - Cisco Packet Tracer (Live Real-Time Automation)
 DESCRIPCIÓN: Lanzador universal, portátil y multiplataforma del Servidor MCP para Cisco Packet Tracer.
              Permite a agentes de IA (Antigravity IDE/CLI, Claude Code, Cursor, OpenCode, VS Code)
              comunicarse de forma transparente y en tiempo real con Cisco Packet Tracer.
@@ -20,7 +20,7 @@ from pathlib import Path
 # Constantes de autoría y branding
 AUTHOR_NAME = "Ing. Helton Smith Bustos Sáez"
 AUTHOR_TITLE = "Magíster en Full Stack | Experto en Ciberseguridad e Inteligencia Artificial Aplicada"
-PROJECT_NAME = "Cisco Packet Tracer MCP Server (Enterprise Real-Time)"
+PROJECT_NAME = "Agent MCP - Cisco Packet Tracer"
 
 def setup_environment():
     """

@@ -1,12 +1,12 @@
 @echo off
 REM ==============================================================================
-REM Cisco Packet Tracer MCP Server - Windows Automated Setup
+REM Agent MCP - Cisco Packet Tracer - Windows Automated Setup
 REM Desarrollado por: Ing. Helton Smith Bustos Sáez
 REM Magíster en Full Stack | Experto en Ciberseguridad e Inteligencia Artificial
 REM ==============================================================================
 
 echo ==============================================================================
-echo Instalando dependencias de Cisco Packet Tracer MCP Server...
+echo Instalando dependencias de Agent MCP - Cisco Packet Tracer...
 echo Desarrollado por: Ing. Helton Smith Bustos Saez
 echo ==============================================================================
 

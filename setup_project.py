@@ -1,6 +1,6 @@
 """
 ====================================================================================================
-PROYECTO: Cisco Packet Tracer MCP Server (Live Real-Time Automation)
+PROYECTO: Agent MCP - Cisco Packet Tracer (Live Real-Time Automation)
 DESCRIPCIÓN: Asistente interactivo de instalación, diagnóstico y generación de configuraciones MCP.
              Genera automáticamente los bloques JSON listos para copiar y pegar en cualquier cliente:
              Antigravity IDE, Antigravity CLI, Claude Code, Cursor, OpenCode, VS Code.
@@ -19,7 +19,7 @@ from pathlib import Path
 # Branding y Autoría
 AUTHOR_NAME = "Ing. Helton Smith Bustos Sáez"
 AUTHOR_TITLE = "Magíster en Full Stack | Experto en Ciberseguridad e Inteligencia Artificial Aplicada"
-PROJECT_NAME = "Cisco Packet Tracer MCP Server"
+PROJECT_NAME = "Agent MCP - Cisco Packet Tracer"
 
 def get_base_paths():
     """Detecta las rutas absolutas del entorno local del usuario dinámicamente."""

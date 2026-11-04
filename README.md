@@ -211,7 +211,7 @@ Para una experiencia guiada con diseño futurista estilo Cisco / Tailwind CSS:
 
 ```text
 ====================================================================================================
-PROYECTO: Cisco Packet Tracer MCP Enterprise Suite
+PROYECTO: Agent MCP - Cisco Packet Tracer
 AUTOR:    Ingeniero en Informática Helton Smith Bustos Sáez
 GRADO:    Magíster en Full Stack
 ÁREAS:    Experto en Ciberseguridad e Inteligencia Artificial Aplicada

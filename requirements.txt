@@ -1,5 +1,5 @@
 # ==============================================================================
-# PROYECTO: Cisco Packet Tracer MCP Server (Live Real-Time Automation)
+# PROYECTO: Agent MCP - Cisco Packet Tracer (Live Real-Time Automation)
 # AUTOR: Helton Smith Bustos Sáez
 #        - Ingeniero en Informática
 #        - Magíster en Full Stack

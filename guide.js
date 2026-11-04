@@ -1,7 +1,7 @@
 /**
  * ====================================================================================================
  * ARCHIVO: guide.js
- * DESCRIPCIÓN: Controlador interactivo del panel de configuración web del Servidor MCP de Cisco.
+ * DESCRIPCIÓN: Controlador interactivo del panel de Agent MCP - Cisco Packet Tracer.
  *              Genera snippets dinámicos para cada cliente (Antigravity IDE, Claude Code, Cursor, etc.),
  *              gestiona el copiado al portapapeles y el progreso del usuario.
  * 
