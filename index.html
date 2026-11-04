@@ -161,7 +161,7 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full space-y-8">
 
         <!-- ====================================================================================== -->
-        <!-- TAB 1: GUÍA RÁPIDA (4 PASOS) -->
+        <!-- TAB 1: GUÍA RÁPIDA (5 PASOS) -->
         <!-- ====================================================================================== -->
         <div id="tab-setup" class="tab-content space-y-6">
 
@@ -198,11 +198,11 @@
                 </div>
             </div>
 
-            <!-- 4 Steps Interactive Cards -->
+            <!-- 5 Steps Interactive Cards -->
             <div class="space-y-4">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight">Paso a Paso de Puesta en Marcha</h3>
-                    <span id="progress-indicator" class="text-xs font-mono text-cisco-400 font-semibold bg-cisco-500/10 px-3 py-1.5 rounded-lg border border-cisco-500/20 w-fit">Progreso: 0/4 Completado</span>
+                    <span id="progress-indicator" class="text-xs font-mono text-cisco-400 font-semibold bg-cisco-500/10 px-3 py-1.5 rounded-lg border border-cisco-500/20 w-fit">Progreso: 0/5 Completado</span>
                 </div>
 
                 <div class="grid grid-cols-1 gap-4">
@@ -225,22 +225,32 @@
                         </div>
                     </div>
 
-                    <!-- Step 2 -->
-                    <div class="glass-card p-5 rounded-xl border border-cyber-border transition-all hover:border-cisco-500/40">
+                    <!-- Step 2 (NUEVO: LANZAR LISTENER ANTES DE CONECTAR CON PACKET TRACER) -->
+                    <div class="glass-card p-5 rounded-xl border border-amber-500/40 bg-amber-500/5 transition-all hover:border-amber-500/70">
                         <div class="flex items-start gap-4">
-                            <div class="w-8 h-8 rounded-lg bg-cisco-500/10 border border-cisco-500/30 text-cisco-400 font-bold flex items-center justify-center shrink-0">2</div>
-                            <div class="space-y-2 flex-1">
+                            <div class="w-8 h-8 rounded-lg bg-amber-500/20 border border-amber-500/40 text-amber-400 font-bold flex items-center justify-center shrink-0">2</div>
+                            <div class="space-y-2.5 flex-1">
                                 <div class="flex items-center justify-between">
-                                    <h4 class="font-semibold text-white text-sm sm:text-base">Cargar la Extensión en Cisco Packet Tracer</h4>
-                                    <input type="checkbox" onchange="updateProgress()" class="step-check w-5 h-5 rounded border-slate-700 bg-cyber-bg text-cisco-500">
+                                    <div class="flex items-center gap-2">
+                                        <h4 class="font-semibold text-white text-sm sm:text-base">Lanzar el Servidor Bridge (<code class="text-amber-400 font-mono">pt_listener.py</code>)</h4>
+                                        <span class="px-2 py-0.5 text-[10px] font-bold uppercase rounded bg-amber-500/20 text-amber-300 border border-amber-500/40">¡Paso Crítico!</span>
+                                    </div>
+                                    <input type="checkbox" onchange="updateProgress()" class="step-check w-5 h-5 rounded border-slate-700 bg-cyber-bg text-amber-400">
                                 </div>
-                                <ol class="list-decimal list-inside space-y-1.5 text-xs sm:text-sm text-slate-300 bg-cyber-bg/70 p-3.5 rounded-lg border border-cyber-border">
-                                    <li>Abre tu software <strong>Cisco Packet Tracer</strong>.</li>
-                                    <li>En el menú superior haz clic en: <strong class="text-cisco-400">Extensions ➡️ Scripting ➡️ Configure PT Script Modules...</strong></li>
-                                    <li>Haz clic en el botón <strong class="text-white">Add...</strong> y selecciona el archivo <code class="text-emerald-400">MCP-Control-Center.pts</code> del proyecto.</li>
-                                    <li>Presiona <strong class="text-white">Yes</strong> si te pide confirmación.</li>
-                                    <li>Se abrirá la ventana <strong>MCP Control Center</strong>. ¡Déjala abierta o minimízala!</li>
-                                </ol>
+                                <div class="p-3 rounded-lg bg-amber-950/40 border border-amber-500/30 text-xs text-amber-200 flex items-start gap-2">
+                                    <span class="text-base leading-none">⚠️</span>
+                                    <p class="leading-relaxed">
+                                        <strong>ORDEN OBLIGATORIO:</strong> Antes de conectar o ejecutar el script en Cisco Packet Tracer, <strong>debe estar iniciado y corriendo este servidor</strong> en tu terminal para que el puerto de enlace <code class="font-mono font-bold text-white">4242</code> esté disponible para recibir la conexión.
+                                    </p>
+                                </div>
+                                <p class="text-xs sm:text-sm text-slate-300">Abre una terminal y ejecuta el script listener:</p>
+                                <div class="bg-cyber-bg border border-cyber-border rounded-lg p-3 code-font text-xs text-amber-300 flex items-center justify-between">
+                                    <code>cd pt-mcp-server\src\bridge && python pt_listener.py</code>
+                                    <button onclick="copyToClipboard('cd pt-mcp-server\\src\\bridge && python pt_listener.py', this)" class="text-slate-400 hover:text-white px-2.5 py-1 rounded bg-slate-800 text-xs">Copiar</button>
+                                </div>
+                                <p class="text-[11px] text-slate-400">
+                                    O directamente desde la ruta: <code class="text-amber-400 font-mono">pt-mcp-server\src\bridge>python pt_listener.py</code>. Verás el mensaje: <em class="text-emerald-400 font-mono">"Packet Tracer Listener started on 0.0.0.0:4242"</em>. Deja esa terminal abierta en segundo plano.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -251,10 +261,16 @@
                             <div class="w-8 h-8 rounded-lg bg-cisco-500/10 border border-cisco-500/30 text-cisco-400 font-bold flex items-center justify-center shrink-0">3</div>
                             <div class="space-y-2 flex-1">
                                 <div class="flex items-center justify-between">
-                                    <h4 class="font-semibold text-white text-sm sm:text-base">Configurar tu Agente de IA</h4>
+                                    <h4 class="font-semibold text-white text-sm sm:text-base">Conectar la Extensión en Cisco Packet Tracer</h4>
                                     <input type="checkbox" onchange="updateProgress()" class="step-check w-5 h-5 rounded border-slate-700 bg-cyber-bg text-cisco-500">
                                 </div>
-                                <p class="text-xs sm:text-sm text-slate-300">Pasa a la pestaña <strong class="text-cisco-400 cursor-pointer underline" onclick="switchTab('agents')">"2. Agentes IA"</strong> para copiar el bloque adaptado a tu editor (Antigravity IDE, Claude Code, Cursor, OpenCode, etc.).</p>
+                                <ol class="list-decimal list-inside space-y-1.5 text-xs sm:text-sm text-slate-300 bg-cyber-bg/70 p-3.5 rounded-lg border border-cyber-border">
+                                    <li>Abre tu software <strong>Cisco Packet Tracer</strong>.</li>
+                                    <li>En el menú superior haz clic en: <strong class="text-cisco-400">Extensions ➡️ Scripting ➡️ Configure PT Script Modules...</strong> (o <em>Script Manager</em>).</li>
+                                    <li>Haz clic en el botón <strong class="text-white">Add...</strong> y selecciona el archivo <code class="text-emerald-400">MCP-Control-Center.pts</code> del proyecto (o <code class="text-cyan-400 font-mono">pt_listener.py</code>).</li>
+                                    <li>Presiona <strong class="text-white">Yes</strong> si te pide confirmación.</li>
+                                    <li>Se abrirá la ventana <strong>MCP Control Center</strong> conectándose en vivo al servidor listener del Paso 2. ¡Déjala abierta o minimízala!</li>
+                                </ol>
                             </div>
                         </div>
                     </div>
@@ -263,6 +279,20 @@
                     <div class="glass-card p-5 rounded-xl border border-cyber-border transition-all hover:border-cisco-500/40">
                         <div class="flex items-start gap-4">
                             <div class="w-8 h-8 rounded-lg bg-cisco-500/10 border border-cisco-500/30 text-cisco-400 font-bold flex items-center justify-center shrink-0">4</div>
+                            <div class="space-y-2 flex-1">
+                                <div class="flex items-center justify-between">
+                                    <h4 class="font-semibold text-white text-sm sm:text-base">Configurar tu Agente de IA</h4>
+                                    <input type="checkbox" onchange="updateProgress()" class="step-check w-5 h-5 rounded border-slate-700 bg-cyber-bg text-cisco-500">
+                                </div>
+                                <p class="text-xs sm:text-sm text-slate-300">Pasa a la pestaña <strong class="text-cisco-400 cursor-pointer underline" onclick="switchTab('agents')">"2. Agentes IA"</strong> para copiar el bloque adaptado a tu editor (Antigravity IDE, Claude Code, Cursor, OpenCode, etc.).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="glass-card p-5 rounded-xl border border-cyber-border transition-all hover:border-cisco-500/40">
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-lg bg-cisco-500/10 border border-cisco-500/30 text-cisco-400 font-bold flex items-center justify-center shrink-0">5</div>
                             <div class="space-y-2 flex-1">
                                 <div class="flex items-center justify-between">
                                     <h4 class="font-semibold text-white text-sm sm:text-base">¡Diseñar y Orquestar en Vivo!</h4>
@@ -274,6 +304,85 @@
                                     <button onclick="copyToClipboard('Crea 2 routers 2911 conectados por serial, con 1 PC a cada router y enrutados por RIPv2 con prueba de ping.', this)" class="text-slate-400 hover:text-white px-2.5 py-1 rounded bg-slate-800 text-xs shrink-0 ml-2">Copiar Prompt</button>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desglose Técnico de Comandos y Archivos de Instalación -->
+                <div class="glass-card p-6 rounded-2xl border border-cyber-border space-y-4 mt-6">
+                    <div class="flex items-center gap-2">
+                        <span class="text-lg">🛠️</span>
+                        <h4 class="text-base sm:text-lg font-bold text-white tracking-tight">Desglose Técnico: ¿Para qué sirve cada archivo y comando?</h4>
+                    </div>
+                    <p class="text-xs text-slate-300">
+                        Cada elemento del repositorio cumple un rol específico en el ciclo de vida de la orquestación:
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                        <!-- install.bat -->
+                        <div class="p-4 rounded-xl bg-cyber-bg/80 border border-cyber-border space-y-1.5">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-cisco-400 font-mono">install.bat</span>
+                                <span class="px-2 py-0.5 text-[10px] font-semibold rounded bg-cisco-500/10 text-cisco-300">Windows 1-Clic</span>
+                            </div>
+                            <p class="text-slate-300 text-[11px] leading-relaxed">
+                                Script de automatización batch para Windows. Actualiza el gestor de paquetes <code class="text-emerald-400">pip</code>, instala las dependencias de <code class="text-emerald-400">requirements.txt</code> y ejecuta <code class="text-cisco-400">setup_project.py</code> para configurar las rutas locales sin intervención manual.
+                            </p>
+                        </div>
+
+                        <!-- install.sh -->
+                        <div class="p-4 rounded-xl bg-cyber-bg/80 border border-cyber-border space-y-1.5">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-cisco-400 font-mono">install.sh</span>
+                                <span class="px-2 py-0.5 text-[10px] font-semibold rounded bg-purple-500/10 text-purple-300">Linux / macOS / WSL</span>
+                            </div>
+                            <p class="text-slate-300 text-[11px] leading-relaxed">
+                                Script de shell POSIX equivalente para entornos Unix/Linux y macOS. Da permisos de ejecución, valida la versión de Python instalada y prepara las librerías del servidor MCP en el sistema.
+                            </p>
+                        </div>
+
+                        <!-- pip install -->
+                        <div class="p-4 rounded-xl bg-cyber-bg/80 border border-cyber-border space-y-1.5">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-emerald-400 font-mono">pip install -r requirements.txt</span>
+                                <span class="px-2 py-0.5 text-[10px] font-semibold rounded bg-emerald-500/10 text-emerald-300">Librerías Base</span>
+                            </div>
+                            <p class="text-slate-300 text-[11px] leading-relaxed">
+                                Descarga e instala los módulos oficiales: <code class="text-white">mcp</code> (protocolo JSON-RPC), <code class="text-white">pydantic</code> (validación estricta de esquemas de datos) y <code class="text-white">typing-extensions</code> para soportar tipado moderno en todas las versiones de Python.
+                            </p>
+                        </div>
+
+                        <!-- setup_project.py -->
+                        <div class="p-4 rounded-xl bg-cyber-bg/80 border border-cyber-border space-y-1.5">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-amber-400 font-mono">python setup_project.py</span>
+                                <span class="px-2 py-0.5 text-[10px] font-semibold rounded bg-amber-500/10 text-amber-300">Auto-Detección</span>
+                            </div>
+                            <p class="text-slate-300 text-[11px] leading-relaxed">
+                                Asistente de introspección que detecta dinámicamente la ruta exacta de tu ejecutable Python (<code class="text-white">sys.executable</code>) y genera en pantalla los bloques JSON exactos con rutas absolutas para Antigravity, ChatGPT Codex, Claude y Cursor.
+                            </p>
+                        </div>
+
+                        <!-- pt_listener.py -->
+                        <div class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/40 space-y-1.5">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-amber-300 font-mono">pt-mcp-server\src\bridge>python pt_listener.py</span>
+                                <span class="px-2 py-0.5 text-[10px] font-semibold rounded bg-amber-500/20 text-amber-200">Bridge Socket :4242</span>
+                            </div>
+                            <p class="text-slate-300 text-[11px] leading-relaxed">
+                                <strong>¡El núcleo del enlace en tiempo real!</strong> Abre un servidor TCP en <code class="text-white">0.0.0.0:4242</code> con la máquina de estados de Cisco IOS. <strong>Debe iniciarse antes</strong> de cargar el script en Packet Tracer para que éste pueda acoplarse inmediatamente.
+                            </p>
+                        </div>
+
+                        <!-- run_server.py -->
+                        <div class="p-4 rounded-xl bg-cyber-bg/80 border border-cyber-border space-y-1.5">
+                            <div class="flex items-center justify-between">
+                                <span class="font-bold text-cyan-400 font-mono">python run_server.py</span>
+                                <span class="px-2 py-0.5 text-[10px] font-semibold rounded bg-cyan-500/10 text-cyan-300">Cargador MCP (STDIO)</span>
+                            </div>
+                            <p class="text-slate-300 text-[11px] leading-relaxed">
+                                Proceso que tu cliente de IA (Antigravity, ChatGPT Codex, Claude Desktop, Cursor) ejecuta en segundo plano. Lee y escribe mensajes JSON-RPC por entrada/salida estándar (<code class="text-white">stdio</code>), exponiendo las herramientas de red al LLM.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -290,8 +399,9 @@
             </div>
 
             <!-- Agent Sub-tabs (Clean Pill Grid) -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2" id="agent-subtabs">
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2" id="agent-subtabs">
                 <button onclick="selectAgent('antigravity')" class="agent-tab active px-3 py-2 rounded-lg text-xs font-semibold bg-cisco-500 text-white transition-all text-center">Antigravity IDE / CLI</button>
+                <button onclick="selectAgent('chatgpt-codex')" class="agent-tab px-3 py-2 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:text-white transition-all text-center">ChatGPT Codex</button>
                 <button onclick="selectAgent('claude-code')" class="agent-tab px-3 py-2 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:text-white transition-all text-center">Claude Code</button>
                 <button onclick="selectAgent('cursor')" class="agent-tab px-3 py-2 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:text-white transition-all text-center">Cursor IDE</button>
                 <button onclick="selectAgent('claude-desktop')" class="agent-tab px-3 py-2 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:text-white transition-all text-center">Claude Desktop</button>
@@ -524,6 +634,12 @@ Crea 1 switch 2960, conecta 1 PC y 1 Server-PT. Configura el servidor con IP 192
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+                <div class="glass-card p-5 rounded-xl border border-amber-500/30 bg-amber-500/5 space-y-2">
+                    <h5 class="font-semibold text-amber-300">¿Por qué es obligatorio ejecutar `python pt_listener.py` primero?</h5>
+                    <p class="text-slate-300 text-xs leading-relaxed">
+                        El script listener en <code class="text-amber-400 font-mono">pt-mcp-server\src\bridge\pt_listener.py</code> actúa como el servidor socket TCP en el puerto <strong>4242</strong>. Si intentas conectar la extensión de Packet Tracer antes de levantarlo, el script no encontrará ningún puerto abierto y la conexión fallará por <em>Connection Refused</em>. Por eso, el orden estricto siempre es: <strong>1° Iniciar el Listener en la terminal</strong> ➡️ <strong>2° Conectar el script en Packet Tracer</strong>.
+                    </p>
+                </div>
                 <div class="glass-card p-5 rounded-xl border border-cyber-border space-y-2">
                     <h5 class="font-semibold text-white">¿Por qué dice "Waiting for your agent" o "Lost MCP server"?</h5>
                     <p class="text-slate-300 text-xs leading-relaxed">

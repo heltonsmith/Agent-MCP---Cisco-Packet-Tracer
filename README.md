@@ -131,7 +131,7 @@ flowchart TD
 
 ---
 
-## 🚀 Guía de Puesta en Marcha en 4 Pasos
+## 🚀 Guía de Puesta en Marcha en 5 Pasos
 
 ### Paso 1: Instalar Dependencias
 En la carpeta del proyecto ejecuta:
@@ -140,14 +140,35 @@ pip install -r requirements.txt
 ```
 *(En Windows puedes simplemente hacer doble clic en `install.bat`).*
 
-### Paso 2: Cargar el Módulo en Cisco Packet Tracer
-1. Abre tu **Cisco Packet Tracer**.
-2. Ve a: **`Extensions` ➡️ `Scripting` ➡️ `Configure PT Script Modules...`**
-3. Haz clic en **`Add...`** y selecciona el archivo `MCP-Control-Center.pts` incluido en el repositorio.
-4. Presiona **`Yes`** en el cuadro de confirmación.
-5. Se abrirá la ventana **`MCP Control Center`** (puedes dejarla abierta o minimizarla).
+### Paso 2: Iniciar el Servidor Bridge (`pt_listener.py`)
+> ⚠️ **REQUISITO OBLIGATORIO Y CRÍTICO (ORDEN DE EJECUCIÓN):**  
+> **El servidor listener DEBE estar iniciado y escuchando en la terminal ANTES de conectar o ejecutar el script en Cisco Packet Tracer.**  
+> Si se carga la extensión antes de iniciar este servidor, la conexión fallará por *Connection Refused* al no encontrar el puerto `4242` abierto.
 
-### Paso 3: Configurar tu Agente de IA
+Abre una terminal y ejecuta:
+```cmd
+cd pt-mcp-server\src\bridge
+python pt_listener.py
+```
+O directamente desde la ruta:
+```cmd
+pt-mcp-server\src\bridge>python pt_listener.py
+```
+Verás en consola:
+```text
+[PT-LISTENER] Packet Tracer Listener started on 0.0.0.0:4242. Awaiting LLM Bridge connections...
+```
+*(Mantén esta ventana de terminal abierta en segundo plano).*
+
+### Paso 3: Cargar el Módulo en Cisco Packet Tracer
+Una vez que el servidor listener ya está corriendo en el puerto 4242:
+1. Abre tu **Cisco Packet Tracer**.
+2. Ve a: **`Extensions` ➡️ `Scripting` ➡️ `Configure PT Script Modules...`** (o *Script Manager*).
+3. Haz clic en **`Add...`** y selecciona el archivo `MCP-Control-Center.pts` incluido en el repositorio (o `pt_listener.py`).
+4. Presiona **`Yes`** en el cuadro de confirmación.
+5. Se abrirá la ventana **`MCP Control Center`** enlazada en vivo con el servidor del Paso 2. (Puedes dejarla abierta o minimizarla).
+
+### Paso 4: Configurar tu Agente de IA
 
 El lanzador universal es **`run_server.py`**. Copia el bloque según tu editor:
 
@@ -167,6 +188,28 @@ Edita tu `mcp_config.json`:
     }
   }
 }
+```
+
+#### 🔹 ChatGPT Codex / OpenAI MCP Client
+En tu configuración de ChatGPT Desktop MCP o Codex CLI (`mcp_config.json`):
+```json
+{
+  "mcpServers": {
+    "cisco-packet-tracer": {
+      "command": "python",
+      "args": [
+        "run_server.py"
+      ],
+      "env": {
+        "PYTHONUNBUFFERED": "1"
+      }
+    }
+  }
+}
+```
+O directamente vía CLI de Codex / OpenAI:
+```bash
+codex mcp add cisco-packet-tracer -- python run_server.py
 ```
 
 #### 🔹 Claude Code (Terminal CLI)
@@ -191,7 +234,23 @@ En tu archivo de configuración de Claude Desktop:
 }
 ```
 
-### Paso 4: ¡Comienza a Crear en Lenguaje Natural!
+---
+
+## 🛠️ Desglose Detallado: ¿Para qué se utiliza cada Comando y Archivo?
+
+| Archivo / Comando | Rol y Propósito Técnico |
+| :--- | :--- |
+| **`install.bat`** | **Instalador automatizado para Windows en 1 clic.** Actualiza `pip`, instala todas las dependencias listadas en `requirements.txt` y ejecuta automáticamente `setup_project.py` para generar la configuración con las rutas absolutas de tu máquina sin requerir edición manual. |
+| **`install.sh`** | **Instalador para Linux, macOS y entornos WSL.** Otorga permisos de ejecución, verifica la presencia de Python 3 y despliega el entorno virtual con las bibliotecas MCP necesarias. |
+| **`pip install -r requirements.txt`** | **Gestor de paquetes.** Descarga e instala desde PyPI el SDK oficial de MCP (`mcp>=1.0.0`), el validador de datos de alta velocidad (`pydantic>=2.0.0`) y las extensiones de tipado (`typing-extensions`). |
+| **`python setup_project.py`** | **Asistente de auto-detección y diagnóstico.** Inspecciona el sistema operativo, localiza la ruta exacta de tu intérprete Python (`sys.executable`), comprueba la existencia de la extensión `.pts` y emite por pantalla los bloques JSON listos para copiar en Antigravity, ChatGPT Codex, Claude o Cursor. |
+| **`pt-mcp-server\src\bridge> python pt_listener.py`** | **Servidor Bridge TCP (Puerto 4242) con FSM de Cisco IOS.** *Comando crítico obligatorio.* Debe ejecutarse **antes** de conectar el script de Packet Tracer. Escucha en `0.0.0.0:4242` y gestiona las transiciones de privilegios (User EXEC ➡️ Privileged EXEC ➡️ Config Global/Interface). |
+| **`python run_server.py`** | **Cargador Universal del Servidor MCP.** Es el comando que invoca tu cliente de IA (Antigravity, ChatGPT Codex, Claude, Cursor) en segundo plano. Mantiene el ciclo de vida del protocolo JSON-RPC sobre entrada y salida estándar (`stdio`). |
+| **`claude mcp add ...` / `codex mcp add ...`** | **Comandos de CLI de los Agentes.** Registran formalmente el servidor MCP en el gestor local de herramientas de cada cliente para que la IA disponga de las 106 herramientas de red en sus conversaciones. |
+
+---
+
+### Paso 5: ¡Comienza a Crear en Lenguaje Natural!
 Dile a tu agente lo que deseas construir. Por ejemplo:
 ```text
 "Crea una topología de 2 routers 2911 conectados por Serial con tarjetas HWIC-2T. Añade una PC a cada router, configura direccionamiento IP y enrútalos con RIPv2 con verificación de ping."

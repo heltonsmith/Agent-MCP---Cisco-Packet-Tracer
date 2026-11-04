@@ -29,6 +29,23 @@ const AGENT_CONFIGS = {
   }
 }`
     },
+    'chatgpt-codex': {
+        title: 'ChatGPT Codex / OpenAI MCP Client',
+        instructions: 'Pega este bloque en tu configuración de ChatGPT Desktop MCP o en tu perfil de Codex CLI (`mcp_config.json`):',
+        code: `{
+  "mcpServers": {
+    "cisco-packet-tracer": {
+      "command": "python",
+      "args": [
+        "run_server.py"
+      ],
+      "env": {
+        "PYTHONUNBUFFERED": "1"
+      }
+    }
+  }
+}`
+    },
     'claude-code': {
         title: 'Claude Code (Terminal CLI)',
         instructions: 'Ejecuta este comando directamente en tu terminal dentro de la carpeta del proyecto:',
@@ -135,18 +152,18 @@ function copyToClipboard(text, button) {
 }
 
 /**
- * Actualiza el indicador numérico de progreso de los 4 pasos.
+ * Actualiza el indicador numérico de progreso de los 5 pasos.
  */
 function updateProgress() {
     const checkboxes = document.querySelectorAll('.step-check');
     const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
     const indicator = document.getElementById('progress-indicator');
     if (indicator) {
-        indicator.textContent = `Progreso: ${checkedCount}/4 Completado`;
-        if (checkedCount === 4) {
+        indicator.textContent = `Progreso: ${checkedCount}/5 Completado`;
+        if (checkedCount === 5) {
             indicator.classList.remove('text-cisco-500', 'bg-cisco-500/10');
             indicator.classList.add('text-emerald-400', 'bg-emerald-500/20');
-            indicator.textContent = `🎉 ¡Todo Listo para Diseñar! (4/4)`;
+            indicator.textContent = `🎉 ¡Todo Listo para Diseñar! (5/5)`;
         } else {
             indicator.classList.add('text-cisco-500', 'bg-cisco-500/10');
             indicator.classList.remove('text-emerald-400', 'bg-emerald-500/20');

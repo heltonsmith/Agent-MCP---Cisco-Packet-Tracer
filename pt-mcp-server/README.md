@@ -82,21 +82,76 @@ O manualmente:
 pip install "mcp>=1.0.0" "pydantic>=2.0.0" "typing-extensions>=4.8.0"
 ```
 
-### 3. Ejecutar el Listener en Cisco Packet Tracer
-Para que las acciones del LLM se reflejen en la GUI en vivo:
+### 3. Iniciar el Servidor Bridge (`pt_listener.py`) antes de conectar con Packet Tracer
+
+> ⚠️ **REQUISITO OBLIGATORIO Y CRÍTICO (ORDEN DE EJECUCIÓN):**  
+> **El servidor listener DEBE estar iniciado y escuchando en la terminal ANTES de conectar o ejecutar el script en Cisco Packet Tracer.**  
+> Si se intenta conectar desde Packet Tracer sin haber levantado este proceso, la conexión será rechazada (*Connection Refused*) porque no habrá ningún servicio escuchando en el puerto TCP `4242`.
+
+#### Paso A: Lanzar el Servidor Bridge en Terminal
+Abre una ventana de terminal (PowerShell o CMD) y ejecuta:
+```cmd
+cd pt-mcp-server\src\bridge
+python pt_listener.py
+```
+O directamente desde la ruta:
+```cmd
+pt-mcp-server\src\bridge>python pt_listener.py
+```
+Verás la confirmación de inicio:
+```text
+[PT-LISTENER] Packet Tracer Listener started on 0.0.0.0:4242. Awaiting LLM Bridge connections...
+```
+*(Deja esta terminal corriendo en segundo plano).*
+
+#### Paso B: Conectar el Script en Cisco Packet Tracer
+Una vez que el listener está activo en el puerto 4242:
 1. Abre **Cisco Packet Tracer**.
-2. Ve al menú superior: **Extensions** ➡️ **Scripting** ➡️ **Script Manager** (o abre la consola de Python interna de PT).
-3. Carga y ejecuta `src/bridge/pt_listener.py`. Verás en el log:
-   ```text
-   [PT-LISTENER] Packet Tracer Listener started on 0.0.0.0:4242. Awaiting LLM Bridge connections...
-   ```
-*(Nota: Si deseas probar o validar el servidor de forma independiente antes de abrir Packet Tracer, puedes ejecutar `python src/bridge/pt_listener.py` en una terminal y actuará como un emulador de estado completo).*
+2. Ve al menú superior: **Extensions** ➡️ **Scripting** ➡️ **Script Manager** (o *Configure PT Script Modules...*).
+3. Carga y ejecuta el script del bridge (`pt_listener.py` o módulo de extensión).
+4. El script se conectará de inmediato al socket local `127.0.0.1:4242` sin errores y reflejará todas las acciones del LLM en la pantalla de Packet Tracer en vivo.
 
 ---
 
 ## ⚙️ Configuración en Clientes LLM
 
-### Claude Desktop (`claude_desktop_config.json`)
+### 1. Antigravity IDE / Antigravity CLI (`mcp_config.json`)
+En `~/.gemini/config/mcp_config.json`:
+```json
+{
+  "mcpServers": {
+    "cisco-packet-tracer": {
+      "command": "python",
+      "args": [
+        "C:\\Users\\Usuario\\Desktop\\MCP Server CKEIMY\\pt-mcp-server\\src\\main.py"
+      ],
+      "cwd": "C:\\Users\\Usuario\\Desktop\\MCP Server CKEIMY\\pt-mcp-server"
+    }
+  }
+}
+```
+
+### 2. ChatGPT Codex / OpenAI Desktop MCP
+En tu archivo de configuración de ChatGPT Desktop o perfil de Codex CLI (`mcp_config.json`):
+```json
+{
+  "mcpServers": {
+    "cisco-packet-tracer": {
+      "command": "python",
+      "args": [
+        "C:\\Users\\Usuario\\Desktop\\MCP Server CKEIMY\\pt-mcp-server\\src\\main.py"
+      ],
+      "cwd": "C:\\Users\\Usuario\\Desktop\\MCP Server CKEIMY\\pt-mcp-server"
+    }
+  }
+}
+```
+O registrando el servidor vía CLI de Codex:
+```bash
+codex mcp add cisco-packet-tracer -- python C:\Users\Usuario\Desktop\MCP Server CKEIMY\pt-mcp-server\src\main.py
+```
+
+### 3. Claude Desktop (`claude_desktop_config.json`)
 En Windows (`%APPDATA%\Claude\claude_desktop_config.json`):
 ```json
 {
@@ -112,6 +167,20 @@ En Windows (`%APPDATA%\Claude\claude_desktop_config.json`):
   }
 }
 ```
+
+---
+
+## 🛠️ Desglose Técnico: ¿Para qué se utiliza cada Comando y Script?
+
+- **`install.bat`**: Script de automatización de Windows que actualiza `pip`, instala las dependencias de `requirements.txt` y ejecuta `setup_project.py` para generar la configuración personalizada en un solo clic.
+- **`install.sh`**: Script para Linux, macOS y WSL que valida el intérprete Python y despliega las librerías necesarias.
+- **`pip install -r requirements.txt` (o `pip install mcp pydantic`)**: Descarga e instala el SDK oficial `mcp` para transporte JSON-RPC y `pydantic` para validación de contratos tipados de red.
+- **`python setup_project.py`**: Utilidad interactiva que inspecciona tu computadora, resuelve las rutas absolutas del proyecto y emite las configuraciones listas para copiar en Antigravity, ChatGPT Codex, Claude o Cursor.
+- **`pt-mcp-server\src\bridge> python pt_listener.py`**: **Comando obligatorio.** Inicia el servidor de sockets TCP en el puerto `4242` que emula el autómata de estados de Cisco IOS. Debe levantarse **antes** de conectar el script en Cisco Packet Tracer.
+- **`python src/main.py` (o `python run_server.py`)**: Proceso servidor MCP ejecutado por el LLM en segundo plano mediante `stdio`, que expone las 24 herramientas de automatización de red.
+- **`test_quickstart.py`**: Script de diagnóstico para validar en 5 segundos que el socket bridge, la máquina de estados IOS y los comandos `show` / `ping` funcionan antes de conectar el agente de IA.
+
+---
 
 ---
 

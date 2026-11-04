@@ -81,7 +81,7 @@ def main():
     print(f"[*] Archivo Extensión Cisco (.pts):    {pts_extension}")
     print("-" * 100)
 
-    print("\n📋 1. CONFIGURACIÓN PARA ANTIGRAVITY IDE / CURSOR / CLAUDE DESKTOP:")
+    print("\n📋 1. CONFIGURACIÓN PARA ANTIGRAVITY IDE / CHATGPT CODEX / CURSOR / CLAUDE DESKTOP:")
     print("   Copia y pega este bloque en tu archivo de configuración MCP (mcp_config.json):")
     print(json.dumps(std_config, indent=2))
 
