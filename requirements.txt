@@ -1,0 +1,13 @@
+# ==============================================================================
+# PROYECTO: Cisco Packet Tracer MCP Server (Live Real-Time Automation)
+# AUTOR: Helton Smith Bustos Sáez
+#        - Ingeniero en Informática
+#        - Magíster en Full Stack
+#        - Experto en Ciberseguridad e Inteligencia Artificial Aplicada
+# ==============================================================================
+
+packet-tracer-mcp>=0.11.0
+mcp>=1.30.0
+pydantic>=2.0.0
+typing-extensions>=4.8.0
+

@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cisco Packet Tracer MCP Enterprise Suite | Ing. Helton Smith Bustos Sáez</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cisco: {
+                            50: '#eef8ff',
+                            400: '#38bdf8',
+                            500: '#00bceb',
+                            600: '#049fd9',
+                            700: '#0284c7',
+                            800: '#005073',
+                            900: '#0b2336',
+                        },
+                        cyber: {
+                            bg: '#070b12',
+                            surface: '#0d131f',
+                            card: '#111827',
+                            border: '#1f293d',
+                            accent: '#10b981',
+                            warning: '#f59e0b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #070b12;
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(0, 188, 235, 0.08) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(16, 185, 129, 0.05) 0px, transparent 50%),
+                radial-gradient(rgba(4, 159, 217, 0.06) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 28px 28px;
+        }
+        .code-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        /* Eliminar totalmente barras de scroll feas en navegadores */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none !important;
+            width: 0 !important;
+            height: 0 !important;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none !important;
+            scrollbar-width: none !important;
+        }
+        .glass-card {
+            background: rgba(17, 24, 39, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(31, 41, 61, 0.8);
+        }
+        .tab-active {
+            background: linear-gradient(135deg, rgba(0, 188, 235, 0.15), rgba(4, 159, 217, 0.25));
+            color: #ffffff !important;
+            border-color: #00bceb !important;
+            box-shadow: 0 0 15px rgba(0, 188, 235, 0.2);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between antialiased selection:bg-cisco-500 selection:text-white">
+
+    <!-- Top Watermark & Authority Banner -->
+    <div class="bg-gradient-to-r from-cisco-900 via-slate-900 to-cisco-900 border-b border-cisco-500/30 text-xs py-2 px-4 shadow-md">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
+            <div class="flex items-center gap-2">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span class="text-slate-300">Desarrollo y Arquitectura Oficial MCP por:</span>
+                <strong class="text-white font-semibold tracking-wide">Ingeniero en Informática Helton Smith Bustos Sáez</strong>
+            </div>
+            <div class="text-cisco-400 font-medium">
+                Magíster en Full Stack · Experto en Ciberseguridad & Inteligencia Artificial Aplicada
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="border-b border-cyber-border bg-cyber-bg/95 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                
+                <!-- Brand Title -->
+                <div class="flex items-center space-x-3 w-full md:w-auto justify-center md:justify-start">
+                    <div class="h-10 w-10 rounded-xl bg-gradient-to-tr from-cisco-800 to-cisco-500 flex items-center justify-center shadow-lg shadow-cisco-500/20 shrink-0">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <h1 class="text-base sm:text-lg font-bold text-white tracking-tight">Cisco Packet Tracer MCP Suite</h1>
+                            <span class="px-2 py-0.5 text-[10px] font-semibold rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">106 Tools</span>
+                        </div>
+                        <p class="text-[11px] text-slate-400">Automatización de Redes en Tiempo Real con Inteligencia Artificial</p>
+                    </div>
+                </div>
+
+                <!-- Watermark Pill Badge -->
+                <div class="hidden lg:flex items-center gap-2.5 bg-cyber-card/80 border border-cyber-border px-3.5 py-1.5 rounded-full text-xs">
+                    <span class="w-2 h-2 rounded-full bg-cisco-500"></span>
+                    <span class="text-slate-400">Autor:</span>
+                    <span class="font-semibold text-white">Ing. Helton Smith Bustos Sáez</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Sleek Responsive Tab Bar (Zero Scrollbars, Clean Layout) -->
+        <div class="border-t border-cyber-border bg-cyber-card/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <nav class="flex flex-wrap items-center justify-center sm:justify-start gap-1 sm:gap-2 py-2" id="main-nav">
+                    <button onclick="switchTab('setup')" class="nav-tab tab-active flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs font-semibold border border-transparent transition-all">
+                        <span>⚡</span>
+                        <span>1. Guía Rápida</span>
+                    </button>
+                    <button onclick="switchTab('agents')" class="nav-tab flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 border border-transparent transition-all">
+                        <span>🤖</span>
+                        <span>2. Agentes IA</span>
+                    </button>
+                    <button onclick="switchTab('devices')" class="nav-tab flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 border border-transparent transition-all">
+                        <span>🎛️</span>
+                        <span>3. Dispositivos (100%)</span>
+                    </button>
+                    <button onclick="switchTab('protocols')" class="nav-tab flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 border border-transparent transition-all">
+                        <span>📡</span>
+                        <span>4. Protocolos & Servicios</span>
+                    </button>
+                    <button onclick="switchTab('prompts')" class="nav-tab flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 border border-transparent transition-all">
+                        <span>🧪</span>
+                        <span>5. Laboratorios 1-Clic</span>
+                    </button>
+                    <button onclick="switchTab('faq')" class="nav-tab flex items-center gap-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800/60 border border-transparent transition-all">
+                        <span>❓</span>
+                        <span>6. Diagnóstico</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full space-y-8">
+
+        <!-- ====================================================================================== -->
+        <!-- TAB 1: GUÍA RÁPIDA (4 PASOS) -->
+        <!-- ====================================================================================== -->
+        <div id="tab-setup" class="tab-content space-y-6">
+
+            <!-- Hero Banner -->
+            <div class="glass-card rounded-2xl p-6 sm:p-8 relative overflow-hidden shadow-2xl border border-cyber-border">
+                <div class="max-w-3xl space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md text-xs font-medium bg-cisco-500/10 text-cisco-400 border border-cisco-500/20">
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Despliegue en Tiempo Real en la Pantalla Original
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight leading-tight">
+                        Orquesta Cisco Packet Tracer Mediante Lenguaje Natural
+                    </h2>
+                    <p class="text-slate-300 text-xs sm:text-sm md:text-base leading-relaxed">
+                        Controla el software original de Cisco Packet Tracer con tu agente de IA preferido: crea topologías complejas, inserta tarjetas modulares, cablea dispositivos, configura protocolos (RIP, OSPF, EIGRP, BGP, VLANs, STP, NAT, ACLs, VoIP) y ejecuta diagnósticos en vivo.
+                    </p>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
+                        <div class="bg-cyber-bg/80 border border-cyber-border rounded-xl p-3 text-center">
+                            <div class="text-lg sm:text-xl font-bold text-cisco-400">106</div>
+                            <div class="text-[11px] text-slate-400">Herramientas MCP</div>
+                        </div>
+                        <div class="bg-cyber-bg/80 border border-cyber-border rounded-xl p-3 text-center">
+                            <div class="text-lg sm:text-xl font-bold text-emerald-400">74+</div>
+                            <div class="text-[11px] text-slate-400">Modelos de Hardware</div>
+                        </div>
+                        <div class="bg-cyber-bg/80 border border-cyber-border rounded-xl p-3 text-center">
+                            <div class="text-lg sm:text-xl font-bold text-purple-400">15</div>
+                            <div class="text-[11px] text-slate-400">Tipos de Cableado</div>
+                        </div>
+                        <div class="bg-cyber-bg/80 border border-cyber-border rounded-xl p-3 text-center">
+                            <div class="text-lg sm:text-xl font-bold text-amber-400">Dual</div>
+                            <div class="text-[11px] text-slate-400">HTTP + File Bridge</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4 Steps Interactive Cards -->
+            <div class="space-y-4">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <h3 class="text-lg sm:text-xl font-bold text-white tracking-tight">Paso a Paso de Puesta en Marcha</h3>
+                    <span id="progress-indicator" class="text-xs font-mono text-cisco-400 font-semibold bg-cisco-500/10 px-3 py-1.5 rounded-lg border border-cisco-500/20 w-fit">Progreso: 0/4 Completado</span>
+                </div>
+
+                <div class="grid grid-cols-1 gap-4">
+                    <!-- Step 1 -->
+                    <div class="glass-card p-5 rounded-xl border border-cyber-border transition-all hover:border-cisco-500/40">
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-lg bg-cisco-500/10 border border-cisco-500/30 text-cisco-400 font-bold flex items-center justify-center shrink-0">1</div>
+                            <div class="space-y-2 flex-1">
+                                <div class="flex items-center justify-between">
+                                    <h4 class="font-semibold text-white text-sm sm:text-base">Instalar Dependencias de Python</h4>
+                                    <input type="checkbox" onchange="updateProgress()" class="step-check w-5 h-5 rounded border-slate-700 bg-cyber-bg text-cisco-500">
+                                </div>
+                                <p class="text-xs sm:text-sm text-slate-300">Abre tu terminal en la carpeta del proyecto y ejecuta:</p>
+                                <div class="bg-cyber-bg border border-cyber-border rounded-lg p-3 code-font text-xs text-emerald-400 flex items-center justify-between">
+                                    <code>pip install -r requirements.txt</code>
+                                    <button onclick="copyToClipboard('pip install -r requirements.txt', this)" class="text-slate-400 hover:text-white px-2.5 py-1 rounded bg-slate-800 text-xs">Copiar</button>
+                                </div>
+                                <p class="text-[11px] text-slate-400">💡 En Windows también puedes simplemente hacer doble clic sobre <code class="text-cisco-400">install.bat</code>.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="glass-card p-5 rounded-xl border border-cyber-border transition-all hover:border-cisco-500/40">
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-lg bg-cisco-500/10 border border-cisco-500/30 text-cisco-400 font-bold flex items-center justify-center shrink-0">2</div>
+                            <div class="space-y-2 flex-1">
+                                <div class="flex items-center justify-between">
+                                    <h4 class="font-semibold text-white text-sm sm:text-base">Cargar la Extensión en Cisco Packet Tracer</h4>
+                                    <input type="checkbox" onchange="updateProgress()" class="step-check w-5 h-5 rounded border-slate-700 bg-cyber-bg text-cisco-500">
+                                </div>
+                                <ol class="list-decimal list-inside space-y-1.5 text-xs sm:text-sm text-slate-300 bg-cyber-bg/70 p-3.5 rounded-lg border border-cyber-border">
+                                    <li>Abre tu software <strong>Cisco Packet Tracer</strong>.</li>
+                                    <li>En el menú superior haz clic en: <strong class="text-cisco-400">Extensions ➡️ Scripting ➡️ Configure PT Script Modules...</strong></li>
+                                    <li>Haz clic en el botón <strong class="text-white">Add...</strong> y selecciona el archivo <code class="text-emerald-400">MCP-Control-Center.pts</code> del proyecto.</li>
+                                    <li>Presiona <strong class="text-white">Yes</strong> si te pide confirmación.</li>
+                                    <li>Se abrirá la ventana <strong>MCP Control Center</strong>. ¡Déjala abierta o minimízala!</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="glass-card p-5 rounded-xl border border-cyber-border transition-all hover:border-cisco-500/40">
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-lg bg-cisco-500/10 border border-cisco-500/30 text-cisco-400 font-bold flex items-center justify-center shrink-0">3</div>
+                            <div class="space-y-2 flex-1">
+                                <div class="flex items-center justify-between">
+                                    <h4 class="font-semibold text-white text-sm sm:text-base">Configurar tu Agente de IA</h4>
+                                    <input type="checkbox" onchange="updateProgress()" class="step-check w-5 h-5 rounded border-slate-700 bg-cyber-bg text-cisco-500">
+                                </div>
+                                <p class="text-xs sm:text-sm text-slate-300">Pasa a la pestaña <strong class="text-cisco-400 cursor-pointer underline" onclick="switchTab('agents')">"2. Agentes IA"</strong> para copiar el bloque adaptado a tu editor (Antigravity IDE, Claude Code, Cursor, OpenCode, etc.).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="glass-card p-5 rounded-xl border border-cyber-border transition-all hover:border-cisco-500/40">
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-lg bg-cisco-500/10 border border-cisco-500/30 text-cisco-400 font-bold flex items-center justify-center shrink-0">4</div>
+                            <div class="space-y-2 flex-1">
+                                <div class="flex items-center justify-between">
+                                    <h4 class="font-semibold text-white text-sm sm:text-base">¡Diseñar y Orquestar en Vivo!</h4>
+                                    <input type="checkbox" onchange="updateProgress()" class="step-check w-5 h-5 rounded border-slate-700 bg-cyber-bg text-cisco-500">
+                                </div>
+                                <p class="text-xs sm:text-sm text-slate-300">Dile a tu agente lo que quieres crear y observa cómo se dibuja en tiempo real:</p>
+                                <div class="bg-cyber-bg border border-cyber-border rounded-lg p-3 code-font text-xs text-cyan-300 flex items-center justify-between">
+                                    <span>"Crea 2 routers 2911 conectados por serial, con 1 PC a cada router y enrutados por RIPv2 con prueba de ping."</span>
+                                    <button onclick="copyToClipboard('Crea 2 routers 2911 conectados por serial, con 1 PC a cada router y enrutados por RIPv2 con prueba de ping.', this)" class="text-slate-400 hover:text-white px-2.5 py-1 rounded bg-slate-800 text-xs shrink-0 ml-2">Copiar Prompt</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====================================================================================== -->
+        <!-- TAB 2: CONFIGURACIÓN DE AGENTES IA -->
+        <!-- ====================================================================================== -->
+        <div id="tab-agents" class="tab-content space-y-6 hidden">
+            <div>
+                <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Configuración por Agente de IA</h3>
+                <p class="text-slate-400 text-xs sm:text-sm">Selecciona tu plataforma para ver el bloque de configuración correspondiente:</p>
+            </div>
+
+            <!-- Agent Sub-tabs (Clean Pill Grid) -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2" id="agent-subtabs">
+                <button onclick="selectAgent('antigravity')" class="agent-tab active px-3 py-2 rounded-lg text-xs font-semibold bg-cisco-500 text-white transition-all text-center">Antigravity IDE / CLI</button>
+                <button onclick="selectAgent('claude-code')" class="agent-tab px-3 py-2 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:text-white transition-all text-center">Claude Code</button>
+                <button onclick="selectAgent('cursor')" class="agent-tab px-3 py-2 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:text-white transition-all text-center">Cursor IDE</button>
+                <button onclick="selectAgent('claude-desktop')" class="agent-tab px-3 py-2 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:text-white transition-all text-center">Claude Desktop</button>
+                <button onclick="selectAgent('opencode')" class="agent-tab px-3 py-2 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:text-white transition-all text-center">OpenCode / VS Code</button>
+            </div>
+
+            <!-- Code Preview Box -->
+            <div class="relative">
+                <pre id="config-code" class="glass-card rounded-xl p-5 code-font text-xs sm:text-sm text-slate-200 overflow-x-auto leading-relaxed border border-cyber-border no-scrollbar"></pre>
+                <button id="btn-copy-config" onclick="copyCurrentConfig(this)" class="absolute top-4 right-4 text-xs bg-cisco-600 hover:bg-cisco-500 text-white font-semibold px-3 py-1.5 rounded-lg shadow-md transition-all">
+                    Copiar Configuración
+                </button>
+            </div>
+            <p id="agent-instructions" class="text-xs text-slate-400"></p>
+        </div>
+
+        <!-- ====================================================================================== -->
+        <!-- TAB 3: CATÁLOGO DE DISPOSITIVOS -->
+        <!-- ====================================================================================== -->
+        <div id="tab-devices" class="tab-content space-y-6 hidden">
+            <div>
+                <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Catálogo Maestro de Hardware (100% Packet Tracer)</h3>
+                <p class="text-slate-400 text-xs sm:text-sm">Todos los modelos y módulos soportados para su creación y cableado en vivo.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Routers -->
+                <div class="glass-card p-5 rounded-xl border border-cyber-border space-y-3">
+                    <div class="flex items-center gap-2 text-cisco-400 font-bold text-sm">
+                        <span>📡</span> Routers Cisco ISR / Edge
+                    </div>
+                    <ul class="text-xs space-y-2 text-slate-300">
+                        <li><strong class="text-white">Cisco 2911:</strong> 3x GigE, 3 ranuras HWIC (HWIC-2T para seriales).</li>
+                        <li><strong class="text-white">Cisco 1941:</strong> 2x GigE, 2 ranuras HWIC compactas.</li>
+                        <li><strong class="text-white">Cisco 2901:</strong> 2x GigE, 4 ranuras HWIC modulares.</li>
+                        <li><strong class="text-white">Cisco 2811:</strong> 2x FastEthernet, WIC/NM (VoIP CME ready).</li>
+                        <li><strong class="text-white">ISR 4331 / 4321:</strong> Routers modernos con ranuras NIM.</li>
+                        <li><strong class="text-white">819HG-4G / CGR1240:</strong> Routers IoT y Celular 4G.</li>
+                    </ul>
+                </div>
+
+                <!-- Switches -->
+                <div class="glass-card p-5 rounded-xl border border-cyber-border space-y-3">
+                    <div class="flex items-center gap-2 text-emerald-400 font-bold text-sm">
+                        <span>🔀</span> Switches Catalyst
+                    </div>
+                    <ul class="text-xs space-y-2 text-slate-300">
+                        <li><strong class="text-white">Catalyst 2960-24TT:</strong> 24x FastEthernet + 2x GigE (L2).</li>
+                        <li><strong class="text-white">Catalyst 3560-24PS:</strong> 24x FastEthernet PoE + GigE (L3 Multicapa).</li>
+                        <li><strong class="text-white">Catalyst 3650-24PS:</strong> 24x Gigabit PoE + SFP+ (L3 Enterprise).</li>
+                        <li><strong class="text-white">Catalyst 2950-24:</strong> Switch L2 estándar CCNA.</li>
+                        <li><strong class="text-white">IE-2000:</strong> Switch Industrial Ethernet para IoT.</li>
+                    </ul>
+                </div>
+
+                <!-- Security & Firewalls -->
+                <div class="glass-card p-5 rounded-xl border border-cyber-border space-y-3">
+                    <div class="flex items-center gap-2 text-red-400 font-bold text-sm">
+                        <span>🛡️</span> Seguridad y Firewalls
+                    </div>
+                    <ul class="text-xs space-y-2 text-slate-300">
+                        <li><strong class="text-white">Cisco ASA 5506-X:</strong> Firewall Next-Gen con FirePOWER (8x GigE).</li>
+                        <li><strong class="text-white">Cisco ASA 5505:</strong> Firewall perimetral clásico.</li>
+                        <li><strong class="text-white">ACLs IOS:</strong> Estándar (1-99), Extendidas (100-199) y Nombradas.</li>
+                        <li><strong class="text-white">NAT / PAT:</strong> Static NAT, Dynamic Pool y NAT Overload.</li>
+                        <li><strong class="text-white">Hardening:</strong> Port Security, SSH v2, AAA, Banner.</li>
+                    </ul>
+                </div>
+
+                <!-- Wireless & Controller -->
+                <div class="glass-card p-5 rounded-xl border border-cyber-border space-y-3">
+                    <div class="flex items-center gap-2 text-purple-400 font-bold text-sm">
+                        <span>📶</span> Redes Inalámbricas (Wi-Fi)
+                    </div>
+                    <ul class="text-xs space-y-2 text-slate-300">
+                        <li><strong class="text-white">WLC-PT:</strong> Wireless LAN Controller centralizado.</li>
+                        <li><strong class="text-white">LAP-PT:</strong> Lightweight Access Point administrado por WLC.</li>
+                        <li><strong class="text-white">Cisco 3702i:</strong> Access Point Dual-Band 802.11ac autónomo.</li>
+                        <li><strong class="text-white">HomeRouter-PT-AC:</strong> Router doméstico con NAT y Wi-Fi.</li>
+                        <li><strong class="text-white">Linksys-WRT300N:</strong> Router residencial clásico.</li>
+                    </ul>
+                </div>
+
+                <!-- Servers & Services -->
+                <div class="glass-card p-5 rounded-xl border border-cyber-border space-y-3">
+                    <div class="flex items-center gap-2 text-amber-400 font-bold text-sm">
+                        <span>🗄️</span> Servidores y Endpoints
+                    </div>
+                    <ul class="text-xs space-y-2 text-slate-300">
+                        <li><strong class="text-white">Server-PT:</strong> Servidor multi-servicio (DNS, Web, DHCP, FTP, Email, Syslog, NTP, AAA).</li>
+                        <li><strong class="text-white">PC-PT & Laptop-PT:</strong> Clientes finales con NIC Ethernet o Wi-Fi.</li>
+                        <li><strong class="text-white">Cisco 7960 IP Phone:</strong> Teléfono VoIP con pantalla y soporte CME.</li>
+                        <li><strong class="text-white">Printers, Smartphones & Tablets.</strong></li>
+                    </ul>
+                </div>
+
+                <!-- IoT & Cables -->
+                <div class="glass-card p-5 rounded-xl border border-cyber-border space-y-3">
+                    <div class="flex items-center gap-2 text-cyan-400 font-bold text-sm">
+                        <span>🔌</span> Cableado y Entorno IoT
+                    </div>
+                    <ul class="text-xs space-y-2 text-slate-300">
+                        <li><strong class="text-white">Cables:</strong> Directo (Straight), Cruzado (Cross), Serial DTE/DCE, Fibra, Coaxial, Consola y Auto.</li>
+                        <li><strong class="text-white">MCU-PT & SBC-PT:</strong> Microcontroladores y Raspberry Pi programables.</li>
+                        <li><strong class="text-white">Things:</strong> Puertas, ventiladores, detectores de humo, sensores y sirenas.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====================================================================================== -->
+        <!-- TAB 4: MATRIZ DE PROTOCOLOS Y SERVICIOS -->
+        <!-- ====================================================================================== -->
+        <div id="tab-protocols" class="tab-content space-y-6 hidden">
+            <div>
+                <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Matriz de Protocolos, Routing & Switching</h3>
+                <p class="text-slate-400 text-xs sm:text-sm">Herramientas MCP especializadas para cada función de red:</p>
+            </div>
+
+            <div class="glass-card rounded-xl overflow-hidden border border-cyber-border">
+                <div class="overflow-x-auto no-scrollbar">
+                    <table class="w-full text-left text-xs sm:text-sm">
+                        <thead class="bg-cyber-bg text-cisco-400 font-semibold border-b border-cyber-border">
+                            <tr>
+                                <th class="p-3.5">Área / Capa</th>
+                                <th class="p-3.5">Protocolos y Tecnologías</th>
+                                <th class="p-3.5">Herramientas MCP Asociadas</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-cyber-border text-slate-300">
+                            <tr>
+                                <td class="p-3.5 font-bold text-white whitespace-nowrap">Enrutamiento L3</td>
+                                <td class="p-3.5">RIPv1, RIPv2, RIPng, OSPFv2, OSPFv3 (Single & Multi-Area), EIGRP, BGP, Rutas Estáticas y Flotantes.</td>
+                                <td class="p-3.5 code-font text-xs text-cisco-400">pt_configure_rip, pt_configure_eigrp, pt_apply_bgp, pt_configure_static_route, pt_read_routes</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3.5 font-bold text-white whitespace-nowrap">Switching L2</td>
+                                <td class="p-3.5">VLANs 802.1Q, Inter-VLAN Router-on-a-Stick, SVIs Multicapa, Spanning Tree (PVST, Rapid-PVST, MST), EtherChannel (LACP, PAgP).</td>
+                                <td class="p-3.5 code-font text-xs text-emerald-400">pt_apply_vlan, pt_configure_router_on_a_stick, pt_configure_spanning_tree, pt_configure_etherchannel_bundle</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3.5 font-bold text-white whitespace-nowrap">Seguridad de Red</td>
+                                <td class="p-3.5">Port Security (mac estática, sticky, restrict/shutdown), ACLs Estándar y Extendidas, NAT Overload (PAT), Hardening IOS.</td>
+                                <td class="p-3.5 code-font text-xs text-red-400">pt_apply_port_security, pt_apply_acl, pt_apply_nat, pt_apply_hardening, pt_audit_security</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3.5 font-bold text-white whitespace-nowrap">Servicios & Servidores</td>
+                                <td class="p-3.5">Servidor DHCP en IOS, Servidor DNS en Server-PT, Servidor Web HTTP/HTTPS, NTP, Syslog, NetFlow, Redundancia HSRP.</td>
+                                <td class="p-3.5 code-font text-xs text-amber-400">pt_configure_ios_dhcp_server, pt_configure_dns_records, pt_configure_web_server, pt_apply_hsrp</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3.5 font-bold text-white whitespace-nowrap">Voz sobre IP & QoS</td>
+                                <td class="p-3.5">Cisco CallManager Express (CME), ephones, ephone-dn, DHCP option 150, QoS MQC (class-map, policy-map, LLQ).</td>
+                                <td class="p-3.5 code-font text-xs text-purple-400">pt_apply_voice, pt_apply_qos, pt_read_qos</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3.5 font-bold text-white whitespace-nowrap">Diagnóstico y Pruebas</td>
+                                <td class="p-3.5">Verificación de conectividad Ping, traza de paquetes PDU en simulación, Fast Forward del reloj para convergencia inmediata.</td>
+                                <td class="p-3.5 code-font text-xs text-cyan-400">pt_verify_connectivity, pt_fast_forward, pt_send_pdu, pt_health_check, pt_inspect_ports</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====================================================================================== -->
+        <!-- TAB 5: LABORATORIOS EN 1 CLIC -->
+        <!-- ====================================================================================== -->
+        <div id="tab-prompts" class="tab-content space-y-6 hidden">
+            <div>
+                <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Biblioteca de Laboratorios Listos</h3>
+                <p class="text-slate-400 text-xs sm:text-sm">Copia cualquiera de estos prompts y envíaselo a tu agente para que despliegue la red completa:</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Lab 1 -->
+                <div class="glass-card p-5 rounded-xl border border-cyber-border space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-semibold text-cisco-400 uppercase tracking-wider">Laboratorio 1 · CCNA Routing</span>
+                        <button onclick="copyToClipboard(this.parentElement.nextElementSibling.textContent, this)" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-2.5 py-1 rounded">Copiar</button>
+                    </div>
+                    <p class="text-xs text-slate-300 code-font bg-cyber-bg p-3 rounded-lg border border-cyber-border leading-relaxed">
+Crea 2 routers Cisco 2911 conectados mediante enlace Serial usando tarjetas HWIC-2T en la ranura 0/0. Conecta una PC a cada router mediante Ethernet directo, asigna el direccionamiento IP correspondiente (192.168.10.0/24 y 192.168.20.0/24), enrútalos mediante RIPv2 y realiza una prueba de ping de extremo a extremo.
+                    </p>
+                </div>
+
+                <!-- Lab 2 -->
+                <div class="glass-card p-5 rounded-xl border border-cyber-border space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-semibold text-emerald-400 uppercase tracking-wider">Laboratorio 2 · Inter-VLAN Routing</span>
+                        <button onclick="copyToClipboard(this.parentElement.nextElementSibling.textContent, this)" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-2.5 py-1 rounded">Copiar</button>
+                    </div>
+                    <p class="text-xs text-slate-300 code-font bg-cyber-bg p-3 rounded-lg border border-cyber-border leading-relaxed">
+Diseña una red con 1 switch Cisco 2960 y 1 router 2911. Crea la VLAN 10 (Ventas) y VLAN 20 (TI). Conecta 2 PCs al switch en sus respectivas VLANs. Configura un enlace troncal 802.1Q hacia el router e implementa Router-on-a-Stick con subinterfaces Gig0/0.10 y Gig0/0.20 para permitir la comunicación entre ambas VLANs.
+                    </p>
+                </div>
+
+                <!-- Lab 3 -->
+                <div class="glass-card p-5 rounded-xl border border-cyber-border space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-semibold text-purple-400 uppercase tracking-wider">Laboratorio 3 · OSPF Triángulo</span>
+                        <button onclick="copyToClipboard(this.parentElement.nextElementSibling.textContent, this)" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-2.5 py-1 rounded">Copiar</button>
+                    </div>
+                    <p class="text-xs text-slate-300 code-font bg-cyber-bg p-3 rounded-lg border border-cyber-border leading-relaxed">
+Construye una topología de 3 routers Cisco 2911 en triángulo con OSPF en el área 0. Conecta un switch 2960 y una PC en cada extremo. Configura router-id y publica las redes en OSPF. Aplica fast forward para acelerar la convergencia y lee la tabla de rutas de cada router para verificar el estado FULL.
+                    </p>
+                </div>
+
+                <!-- Lab 4 -->
+                <div class="glass-card p-5 rounded-xl border border-cyber-border space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-semibold text-amber-400 uppercase tracking-wider">Laboratorio 4 · Servidor Web & DNS</span>
+                        <button onclick="copyToClipboard(this.parentElement.nextElementSibling.textContent, this)" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-2.5 py-1 rounded">Copiar</button>
+                    </div>
+                    <p class="text-xs text-slate-300 code-font bg-cyber-bg p-3 rounded-lg border border-cyber-border leading-relaxed">
+Crea 1 switch 2960, conecta 1 PC y 1 Server-PT. Configura el servidor con IP 192.168.1.10, habilita el servicio DNS con el registro www.empresa.local apuntando a su IP, habilita el servidor Web HTTP con una página de bienvenida personalizada y desde la PC abre el navegador web consultando el dominio www.empresa.local.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ====================================================================================== -->
+        <!-- TAB 6: DIAGNÓSTICO & FAQ -->
+        <!-- ====================================================================================== -->
+        <div id="tab-faq" class="tab-content space-y-6 hidden">
+            <div>
+                <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Preguntas Frecuentes y Diagnóstico</h3>
+                <p class="text-slate-400 text-xs sm:text-sm">Respuestas técnicas sobre el funcionamiento del puente y la extensión.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+                <div class="glass-card p-5 rounded-xl border border-cyber-border space-y-2">
+                    <h5 class="font-semibold text-white">¿Por qué dice "Waiting for your agent" o "Lost MCP server"?</h5>
+                    <p class="text-slate-300 text-xs leading-relaxed">
+                        Es totalmente normal. La extensión de Packet Tracer incluye un mecanismo de <strong>File bridge de respaldo automático</strong> (🟢 verde). Aunque el puerto HTTP 54321 no esté retenido en ese segundo, las órdenes se envían por archivo local y se dibujan sin pérdida ni retraso.
+                    </p>
+                </div>
+                <div class="glass-card p-5 rounded-xl border border-cyber-border space-y-2">
+                    <h5 class="font-semibold text-white">¿Funciona en cualquier computadora o ruta?</h5>
+                    <p class="text-slate-300 text-xs leading-relaxed">
+                        Sí. El archivo <code class="text-cisco-400 font-mono">run_server.py</code> y <code class="text-cisco-400 font-mono">setup_project.py</code> resuelven las rutas de Python y de los directorios de usuario dinámicamente en tiempo de ejecución, funcionando en Windows, macOS o Linux sin tocar nada a mano.
+                    </p>
+                </div>
+                <div class="glass-card p-5 rounded-xl border border-cyber-border space-y-2">
+                    <h5 class="font-semibold text-white">¿Cómo verificar que el agente tiene comunicación?</h5>
+                    <p class="text-slate-300 text-xs leading-relaxed">
+                        Puedes pedirle a tu agente: <em>"Ejecuta pt_master_catalog y dime qué routers tengo disponibles"</em>. Si responde con la lista de routers, el canal MCP está 100% operativo.
+                    </p>
+                </div>
+                <div class="glass-card p-5 rounded-xl border border-cyber-border space-y-2">
+                    <h5 class="font-semibold text-white">¿Se necesitan permisos de Administrador?</h5>
+                    <p class="text-slate-300 text-xs leading-relaxed">
+                        No. Todo el servidor corre en el espacio de usuario estándar y no modifica archivos del sistema operativo protegidos.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Professional Footer & Watermark -->
+    <footer class="border-t border-cyber-border bg-cyber-bg py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400 text-center md:text-left">
+            <div class="space-y-1">
+                <div class="text-sm font-semibold text-white">Cisco Packet Tracer MCP Enterprise Automation Suite</div>
+                <p>Diseñado, estructurado y programado por el <strong class="text-slate-200">Ingeniero en Informática Helton Smith Bustos Sáez</strong>.</p>
+                <p class="text-slate-500">Magíster en Full Stack · Experto en Ciberseguridad e Inteligencia Artificial Aplicada.</p>
+            </div>
+            <div class="space-y-1 md:text-right">
+                <div>Estándar Abierto Model Context Protocol (MCP) para Cisco IOS.</div>
+                <div class="text-slate-500">© 2026 Helton Smith Bustos Sáez. Todos los derechos reservados.</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Logic Script -->
+    <script src="guide.js"></script>
+    <script>
+        function switchTab(tabId) {
+            // Ocultar todos los paneles de tab
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+
+            // Mostrar el tab seleccionado
+            const activeContent = document.getElementById('tab-' + tabId);
+            if (activeContent) activeContent.classList.remove('hidden');
+
+            // Quitar clase activa a todos los botones de la barra de navegación
+            document.querySelectorAll('.nav-tab').forEach(btn => {
+                btn.classList.remove('tab-active', 'text-white');
+                btn.classList.add('text-slate-300');
+            });
+
+            // Activar el botón correspondiente
+            const activeBtn = Array.from(document.querySelectorAll('.nav-tab')).find(b => 
+                b.getAttribute('onclick') && b.getAttribute('onclick').includes(tabId)
+            );
+            if (activeBtn) {
+                activeBtn.classList.add('tab-active');
+                activeBtn.classList.remove('text-slate-300');
+            }
+        }
+    </script>
+</body>
+</html>
