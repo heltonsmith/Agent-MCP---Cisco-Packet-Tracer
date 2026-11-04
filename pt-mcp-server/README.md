@@ -1,10 +1,23 @@
 # Cisco Packet Tracer MCP Server (Model Context Protocol)
 
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![MCP Official SDK](https://img.shields.io/badge/MCP-Official%20SDK-purple.svg)](https://modelcontextprotocol.io/)
-[![Cisco IOS & Packet Tracer](https://img.shields.io/badge/Cisco-Packet%20Tracer%208.x-005073.svg)](https://www.netacad.com/courses/packet-tracer)
+<div align="left">
+  <span style="display:inline-block; border:1px solid #30363d; border-radius:12px; padding:2px 8px; font-size:11px; font-weight:600; color:#58a6ff; background:#0d1117;">Public</span>
+  &nbsp;
+  <span style="font-size:12px; color:#8b949e;">● <strong>Python</strong> 3.10+ / QtScript</span>
+  &nbsp;
+  <span style="font-size:12px; color:#8b949e;">⚖️ <strong>MIT License</strong></span>
+  &nbsp;
+  <span style="font-size:12px; color:#8b949e;">🕒 Actualizado recientemente</span>
+</div>
 
-Servidor de grado industrial basado en el estándar **Model Context Protocol (MCP)** que dota a Modelos de Lenguaje Grande (LLMs como Claude 3.5 Sonnet, Gemini 1.5/2.0 Pro, GPT-4o) de la capacidad de interactuar, inspeccionar y manipular topologías de red en tiempo real sobre la interfaz gráfica de **Cisco Packet Tracer**.
+<br/>
+
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-3776AB.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/downloads/)
+[![MCP Official SDK](https://img.shields.io/badge/MCP-Official%20SDK-8A2BE2.svg?style=flat-square)](https://modelcontextprotocol.io/)
+[![Cisco IOS & Packet Tracer](https://img.shields.io/badge/Cisco-Packet%20Tracer%208.x-005073.svg?style=flat-square&logo=cisco&logoColor=white)](https://www.netacad.com/courses/packet-tracer)
+[![License](https://img.shields.io/badge/License-MIT-F59E0B.svg?style=flat-square)](LICENSE)
+
+Servidor de grado industrial basado en el estándar **Model Context Protocol (MCP)** que dota a Modelos de Lenguaje Grande (LLMs como Claude 3.5 Sonnet, Gemini 1.5/2.0 Pro, GPT-4o, ChatGPT Codex) de la capacidad de interactuar, inspeccionar y manipular topologías de red en tiempo real sobre la interfaz gráfica de **Cisco Packet Tracer**.
 
 ---
 
@@ -73,14 +86,56 @@ pt-mcp-server/
 - Cisco Packet Tracer 8.0, 8.1 o 8.2+.
 
 ### 2. Instalación de Dependencias
-En la carpeta raíz del proyecto (`pt-mcp-server/`):
+
+Puedes instalar las dependencias de dos formas:
+
+#### ⚡ Opción 1: Automatizada en 1 Clic (Recomendada)
+**No necesitas ejecutar comandos línea a línea.** Los scripts del repositorio raíz se encargan de todo el proceso de forma desatendida (actualizan pip, instalan dependencias y ejecutan `setup_project.py` para detectar tus rutas):
+* **En Windows:** Simplemente haz doble clic en `install.bat`.
+* **En Linux / macOS / WSL:** Ejecuta en la terminal `bash install.sh`.
+
+#### 🛠️ Opción 2: Despliegue Manual Paso a Paso
+Solo si prefieres no usar los archivos automatizados o deseas hacerlo línea por línea en la terminal:
 ```bash
-pip install -e .
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+python setup_project.py
 ```
-O manualmente:
+*(O si prefieres instalar el paquete en modo editable dentro de `pt-mcp-server/`: `pip install -e .`)*
+
+---
+
+## 📦 Desglose Línea por Línea de `install.bat` e `install.sh`
+
+### `install.bat` (Windows Batch)
+```bat
+@echo off
+REM Agent MCP - Cisco Packet Tracer - Windows Setup por Ing. Helton Smith Bustos Sáez
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+python setup_project.py
+pause
+```
+- **`@echo off`**: Oculta los comandos mientras se procesan para que la ventana de consola sea limpia y legible.
+- **`REM ...`**: Comentarios descriptivos de autoría y especialidad que el intérprete omite.
+- **`python -m pip install --upgrade pip`**: Actualiza el gestor `pip` a través del módulo de Python del sistema.
+- **`python -m pip install -r requirements.txt`**: Lee el archivo de requisitos y descarga las librerías `mcp` y `pydantic`.
+- **`python setup_project.py`**: Ejecuta la auto-detección de rutas locales y genera los bloques JSON listos para configurar tu agente.
+- **`pause`**: Mantiene abierta la ventana al finalizar para que el usuario pueda verificar los logs antes de cerrar.
+
+### `install.sh` (Linux / macOS / WSL Bash)
 ```bash
-pip install "mcp>=1.0.0" "pydantic>=2.0.0" "typing-extensions>=4.8.0"
+#!/usr/bin/env bash
+python3 -m pip install --upgrade pip
+python3 -m pip install -r requirements.txt
+python3 setup_project.py
 ```
+- **`#!/usr/bin/env bash`**: *Shebang* que especifica el intérprete Bash estándar de sistemas POSIX.
+- **`python3 -m pip install --upgrade pip`**: Actualiza `pip` en el entorno Python 3.
+- **`python3 -m pip install -r requirements.txt`**: Instala los paquetes requeridos.
+- **`python3 setup_project.py`**: Genera la configuración adaptada al sistema de ficheros de Linux/macOS.
+
+---
 
 ### 3. Iniciar el Servidor Bridge (`pt_listener.py`) antes de conectar con Packet Tracer
 

@@ -1,10 +1,23 @@
 # 🌐 Agent MCP - Cisco Packet Tracer (Real-Time Live Automation)
 
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![MCP SDK](https://img.shields.io/badge/MCP-Official%20Protocol-purple.svg)](https://modelcontextprotocol.io/)
-[![Cisco Packet Tracer](https://img.shields.io/badge/Cisco%20Packet%20Tracer-8.2%20%7C%209.x-005073.svg)](https://www.netacad.com/courses/packet-tracer)
-[![Tools](https://img.shields.io/badge/Tools-106%20MCP%20Tools-emerald.svg)]()
-[![License](https://img.shields.io/badge/License-MIT-amber.svg)]()
+<div align="left">
+  <span style="display:inline-block; border:1px solid #30363d; border-radius:12px; padding:2px 8px; font-size:11px; font-weight:600; color:#58a6ff; background:#0d1117;">Public</span>
+  &nbsp;
+  <span style="font-size:12px; color:#8b949e;">● <strong>Python</strong> 3.10+ / QtScript</span>
+  &nbsp;
+  <span style="font-size:12px; color:#8b949e;">⚖️ <strong>MIT License</strong></span>
+  &nbsp;
+  <span style="font-size:12px; color:#8b949e;">🕒 Actualizado recientemente</span>
+</div>
+
+<br/>
+
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-3776AB.svg?style=flat-square&logo=python&logoColor=white)](https://www.python.org/downloads/)
+[![MCP SDK](https://img.shields.io/badge/MCP-Official%20Protocol-8A2BE2.svg?style=flat-square)](https://modelcontextprotocol.io/)
+[![Cisco Packet Tracer](https://img.shields.io/badge/Cisco%20Packet%20Tracer-8.2%20%7C%209.x-005073.svg?style=flat-square&logo=cisco&logoColor=white)](https://www.netacad.com/courses/packet-tracer)
+[![Tools](https://img.shields.io/badge/Tools-106%20MCP%20Tools-10B981.svg?style=flat-square)]()
+[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen.svg?style=flat-square)]()
+[![License](https://img.shields.io/badge/License-MIT-F59E0B.svg?style=flat-square)](LICENSE)
 
 > ### 🎖️ Autoría y Marca de Agua Oficial
 > **Este proyecto fue concebido, diseñado y programado por:**  
@@ -15,46 +28,117 @@
 
 ## 📖 Visión General del Proyecto
 
-**Agent MCP - Cisco Packet Tracer** es una suite de orquestación de redes en tiempo real que dota a cualquier Agente de Inteligencia Artificial (**Antigravity IDE**, **Antigravity CLI**, **Claude Code**, **Cursor**, **OpenCode**, **VS Code Copilot**, **Claude Desktop**) de la capacidad de crear, conectar, configurar y diagnosticar topologías completas de red **en vivo y directamente sobre la pantalla de Cisco Packet Tracer**.
+**Agent MCP - Cisco Packet Tracer** es una suite de orquestación de redes en tiempo real que dota a cualquier Agente de Inteligencia Artificial (**Antigravity IDE / CLI**, **ChatGPT Codex**, **Claude Code**, **Cursor**, **OpenCode**, **VS Code Copilot**, **Claude Desktop**) de la capacidad de crear, conectar, configurar y diagnosticar topologías completas de red **en vivo y directamente sobre la pantalla de Cisco Packet Tracer**.
 
-A diferencia de los emuladores virtuales en memoria, esta solución se acopla al **Script Engine (QtScript)** original de Cisco Packet Tracer mediante una extensión especializada (`.pts`) y un sistema de transporte dual (**HTTP Bridge :54321** + **File Bridge de alta disponibilidad**).
+A diferencia de los emuladores virtuales en memoria, esta solución se acopla al **Script Engine (QtScript)** original de Cisco Packet Tracer mediante una extensión especializada (`.pts`) y un sistema de transporte dual (**Socket Bridge TCP :4242 / HTTP Bridge :54321** + **File Bridge de alta disponibilidad**).
 
 ---
 
-## 🏛️ Diagrama de Arquitectura
+## 🏛️ Diagramas de Flujo y Arquitectura
+
+### 1. Diagrama de Arquitectura Global de Componentes
 
 ```mermaid
 flowchart TD
-    subgraph IA ["🤖 Agente de Inteligencia Artificial"]
-        A["Claude Code / Antigravity / Cursor / OpenCode"]
+    subgraph IA ["🤖 Agente de Inteligencia Artificial (LLM)"]
+        A["Antigravity / ChatGPT Codex / Claude / Cursor / OpenCode"]
     end
 
-    subgraph MCP ["⚙️ Servidor MCP (106 Herramientas)"]
-        B["run_server.py (Universal Loader)"]
-        C["extended_tools.py (CCNA/CCNP Suite)"]
+    subgraph MCP ["⚙️ Servidor MCP (106 Herramientas de Red)"]
+        B["run_server.py / src/main.py (Universal Loader)"]
+        C["extended_tools.py (Suite CCNA/CCNP)"]
         D["packet-tracer-mcp Core Engine"]
     end
 
-    subgraph Transport ["🔌 Capa de Comunicación Dual"]
-        E1["HTTP Bridge (127.0.0.1:54321)"]
-        E2["File Bridge (Mailbox en %LOCALAPPDATA%)"]
+    subgraph Transport ["🔌 Capa de Transporte & Bridge"]
+        E1["TCP Socket Bridge :4242 (pt_listener.py con FSM Cisco IOS)"]
+        E2["HTTP Bridge (127.0.0.1:54321)"]
+        E3["File Bridge Mailbox (%LOCALAPPDATA% Failover)"]
     end
 
     subgraph PT ["🖥️ Cisco Packet Tracer (GUI en Vivo)"]
         F["MCP-Control-Center.pts (QtScript Engine)"]
         G["Lienzo Gráfico (Routers, Switches, PCs, Servidores)"]
-        H["Consola Cisco IOS (CLI Real)"]
+        H["Consola Cisco IOS (CLI Real & Transiciones de Modo)"]
     end
 
-    A <-->|JSON-RPC stdio| B
+    A <-->|JSON-RPC vía STDIO| B
     B <--> C
     B <--> D
-    D <-->|Canal Primario| E1
-    D <-->|Respaldo Automático| E2
+    D <-->|Canal Primario TCP 4242| E1
+    D <-->|Canal HTTP Secundario| E2
+    D <-->|Respaldo Automático| E3
     E1 <--> F
     E2 <--> F
+    E3 <--> F
     F <--> G
     F <--> H
+```
+
+### 2. Diagrama de Secuencia de Ejecución en Tiempo Real
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Usuario
+    participant LLM as Agente IA (Antigravity / Codex / Claude)
+    participant MCP as Servidor MCP (run_server.py)
+    participant Bridge as Bridge Socket (:4242 pt_listener.py)
+    participant PT as Cisco Packet Tracer (QtScript & GUI)
+
+    Usuario->>LLM: "Crea Router R1, Switch SW1, conéctalos y configura OSPF área 0"
+    LLM->>MCP: Call Tool: pt_add_device(name="R1", model="2911")
+    MCP->>Bridge: JSON Frame: {"action": "add_device", "params": {...}}
+    Bridge->>PT: Inyecta objeto en canvas gráfico
+    PT-->>Bridge: OK (Dispositivo renderizado en coordenadas x, y)
+    Bridge-->>MCP: {"status": "created", "device": "R1"}
+
+    LLM->>MCP: Call Tool: pt_connect_ports(R1:Gig0/0 <-> SW1:Gig0/1)
+    MCP->>Bridge: JSON Frame: {"action": "connect_ports", ...}
+    Bridge->>PT: Dibuja cable físico Copper Straight-Through
+    PT-->>Bridge: OK (Link UP)
+    Bridge-->>MCP: {"status": "connected"}
+
+    LLM->>MCP: Call Tool: pt_configure_ospf(device="R1", networks=[...])
+    MCP->>Bridge: FSM Transition: enable -> conf t -> router ospf 1 -> network ...
+    Bridge->>PT: Inyecta comandos en CLI IOS de R1
+    PT-->>Bridge: Cisco IOS CLI feedback
+    Bridge-->>MCP: {"status": "configured", "cli_output": "..."}
+
+    LLM->>MCP: Call Tool: pt_ping(source="R1", destination="192.168.1.2")
+    MCP->>Bridge: Ejecuta ICMP Echo Request
+    Bridge->>PT: ping 192.168.1.2
+    PT-->>Bridge: !!!!! (Success rate is 100 percent)
+    Bridge-->>MCP: {"packets_received": 5, "packet_loss": 0.0}
+
+    MCP-->>LLM: JSON-RPC Result con telemetría en vivo
+    LLM-->>Usuario: Confirma topología dibujada y conectividad 100% verificada
+```
+
+### 3. Diagrama de la Máquina de Estados Finitos (FSM) de Cisco IOS
+
+```mermaid
+stateDiagram-v2
+    [*] --> User_EXEC: Conexión Inicial (Router>)
+    User_EXEC --> Privileged_EXEC: Inyección 'enable' (Router#)
+    Privileged_EXEC --> Global_Config: Inyección 'configure terminal' (Router(config)#)
+    
+    Global_Config --> Interface_Config: 'interface GigabitEthernet0/0' (config-if)#
+    Global_Config --> Subinterface_Config: 'interface Gig0/0.10' (config-subif)#
+    Global_Config --> Router_Config: 'router ospf 1' / 'router bgp' (config-router)#
+    Global_Config --> VLAN_Config: 'vlan 10' (config-vlan)#
+    Global_Config --> Line_Config: 'line vty 0 4' (config-line)#
+    
+    Interface_Config --> Global_Config: 'exit'
+    Subinterface_Config --> Global_Config: 'exit'
+    Router_Config --> Global_Config: 'exit'
+    VLAN_Config --> Global_Config: 'exit'
+    Line_Config --> Global_Config: 'exit'
+    
+    Interface_Config --> Privileged_EXEC: 'end' / 'do show ...'
+    Router_Config --> Privileged_EXEC: 'end'
+    Global_Config --> Privileged_EXEC: 'exit' / 'end'
+    Privileged_EXEC --> [*]: Estado sincronizado con el LLM
 ```
 
 ---
@@ -133,12 +217,137 @@ flowchart TD
 
 ## 🚀 Guía de Puesta en Marcha en 5 Pasos
 
-### Paso 1: Instalar Dependencias
-En la carpeta del proyecto ejecuta:
+### Paso 1: Instalación del Proyecto (Automatizado en 1 Clic vs. Manual)
+
+Tienes dos alternativas para instalar el proyecto:
+
+#### ⚡ Opción A: Automatizada en 1 Clic (¡La Vía Recomendada!)
+**No necesitas escribir comandos línea por línea a mano.** Los archivos scripts fueron creados precisamente para automatizar todo el proceso en un solo paso:
+* **En Windows:** Simplemente haz **doble clic sobre `install.bat`** (o ejecútalo en CMD).
+* **En Linux / macOS / WSL:** Abre una terminal en la carpeta y ejecuta: `bash install.sh`.
+
+> 💡 **¿Qué hace el script por ti automáticamente?**  
+> Al ejecutar `install.bat` o `install.sh`, el archivo se encarga de:  
+> 1. Actualizar `pip` a la última versión segura.  
+> 2. Descargar e instalar todas las dependencias oficiales de `requirements.txt` (`mcp`, `pydantic`, etc.).  
+> 3. Ejecutar automáticamente `setup_project.py` para detectar la ruta exacta de tu Python y generar los bloques de configuración de tus agentes de IA sin que tengas que editar código a mano.
+
+#### 🛠️ Opción B: Despliegue Manual Línea por Línea (Solo si prefieres no usar scripts)
+Si estás en un servidor restringido, deseas auditar cada paso o prefieres no usar los archivos automatizados, abre tu terminal y ejecuta los comandos manualmente uno a uno:
 ```bash
-pip install -r requirements.txt
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+python setup_project.py
 ```
-*(En Windows puedes simplemente hacer doble clic en `install.bat`).*
+
+---
+
+## 📦 Análisis Exhaustivo Línea por Línea de los Scripts de Instalación
+
+A continuación se desglosa el código fuente exacto de `install.bat` e `install.sh` para que conozcas con total transparencia qué ejecuta internamente cada instrucción o por si gustas reproducirlo a mano:
+
+### 1. Desglose de `install.bat` (Automatización Windows)
+
+```bat
+@echo off
+REM ==============================================================================
+REM Agent MCP - Cisco Packet Tracer - Windows Automated Setup
+REM Desarrollado por: Ing. Helton Smith Bustos Sáez
+REM Magíster en Full Stack | Experto en Ciberseguridad e Inteligencia Artificial
+REM ==============================================================================
+
+echo ==============================================================================
+echo Instalando dependencias de Agent MCP - Cisco Packet Tracer...
+echo Desarrollado por: Ing. Helton Smith Bustos Saez
+echo ==============================================================================
+
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+
+echo.
+echo Generando configuracion dinamica para este equipo...
+python setup_project.py
+
+echo.
+echo Proceso completado. Puedes abrir 'index.html' en tu navegador para ver la guia visual.
+pause
+```
+
+#### Explicación Línea por Línea de `install.bat`:
+| Línea | Comando | Función y Explicación Técnica |
+| :--- | :--- | :--- |
+| **1** | `@echo off` | Oculta la impresión de los comandos en la consola mientras se ejecutan. El prefijo `@` evita que el comando `echo off` se imprima a sí mismo. Da una salida limpia y profesional. |
+| **2-6**| `REM ...` | *(Remark)* Líneas de comentarios que no se ejecutan. Documentan el autor, área de maestría y propósito del script. |
+| **8-11**| `echo ...` | Muestra en pantalla el banner informativo y de créditos de autoría para el usuario. |
+| **13** | `python -m pip install --upgrade pip` | Invoca el módulo `pip` a través del intérprete de Python del sistema y actualiza el gestor a la última versión para evitar fallos de certificados SSL o paquetes deprecados. |
+| **14** | `python -m pip install -r requirements.txt` | Lee el archivo de dependencias e instala en el entorno Python las librerías obligatorias: `mcp>=1.0.0`, `pydantic>=2.0.0` y `typing-extensions`. |
+| **16** | `echo.` | Imprime una línea en blanco en la consola para separar visualmente las secciones. |
+| **17** | `echo Generando configuracion...` | Informa al usuario que comenzará el proceso de detección de rutas locales. |
+| **18** | `python setup_project.py` | Ejecuta el script de introspección que localiza la ruta de Python (`sys.executable`) y del proyecto, generando los bloques JSON listos para Antigravity, ChatGPT Codex, Claude y Cursor. |
+| **20-21**| `echo Proceso completado...` | Muestra el mensaje de éxito final e indica que el panel web interactivo `index.html` está listo para ser consultado. |
+| **22** | `pause` | Detiene la ejecución mostrando *"Presione una tecla para continuar . . ."*. Es vital en Windows para que la ventana de la terminal no se cierre automáticamente al finalizar y el usuario pueda leer los resultados. |
+
+---
+
+### 2. Desglose de `install.sh` (Automatización Linux / macOS / WSL)
+
+```bash
+#!/usr/bin/env bash
+# ==============================================================================
+# Agent MCP - Cisco Packet Tracer - Linux/macOS Automated Setup
+# Desarrollado por: Ing. Helton Smith Bustos Sáez
+# Magíster en Full Stack | Experto en Ciberseguridad e Inteligencia Artificial
+# ==============================================================================
+
+echo "=============================================================================="
+echo "Instalando dependencias de Agent MCP - Cisco Packet Tracer..."
+echo "Desarrollado por: Ing. Helton Smith Bustos Sáez"
+echo "=============================================================================="
+
+python3 -m pip install --upgrade pip
+python3 -m pip install -r requirements.txt
+
+echo ""
+echo "Generando configuración dinámica para este equipo..."
+python3 setup_project.py
+
+echo ""
+echo "Proceso completado. Puedes abrir 'index.html' en tu navegador para ver la guía visual."
+```
+
+#### Explicación Línea por Línea de `install.sh`:
+| Línea | Comando | Función y Explicación Técnica |
+| :--- | :--- | :--- |
+| **1** | `#!/usr/bin/env bash` | *Shebang*. Indica al kernel del sistema operativo Unix/Linux que debe interpretar el script usando el binario de Bash ubicado en el entorno del sistema (`PATH`). |
+| **2-6**| `# ...` | Comentarios descriptivos de encabezado con los créditos oficiales y áreas de especialidad del autor. |
+| **8-11**| `echo "..."` | Imprime por salida estándar (`stdout`) el banner visual de bienvenida. |
+| **13** | `python3 -m pip install --upgrade pip` | Actualiza `pip` invocando explícitamente `python3` (estándar en distribuciones Linux y macOS para evitar colisiones con el legacy Python 2). |
+| **14** | `python3 -m pip install -r requirements.txt` | Descarga e instala en el entorno de usuario/sistema las librerías del protocolo MCP y Pydantic. |
+| **16-17**| `echo ""` y `echo "Generando..."` | Emite espaciado y notifica la fase de introspección de entorno. |
+| **18** | `python3 setup_project.py` | Ejecuta el detector de rutas absolutas adaptadas al sistema de ficheros POSIX. |
+| **20-21**| `echo "Proceso completado..."` | Mensaje de finalización satisfactoria. |
+
+---
+
+### 3. Procedimiento Manual Paso a Paso (Sin Scripts)
+
+Si prefieres no ejecutar archivos `.bat` o `.sh`, puedes hacer exactamente lo mismo ejecutando estos comandos uno por uno en tu terminal:
+
+```bash
+# 1. Ve a la carpeta donde clonaste o descomprimiste el proyecto:
+cd "C:\Users\Usuario\Desktop\MCP Server CKEIMY"
+
+# 2. Actualiza tu instalador pip:
+python -m pip install --upgrade pip
+
+# 3. Instala las librerías necesarias del servidor MCP:
+python -m pip install -r requirements.txt
+
+# 4. Genera la configuración personalizada para tus Agentes de IA:
+python setup_project.py
+```
+
+---
 
 ### Paso 2: Iniciar el Servidor Bridge (`pt_listener.py`)
 > ⚠️ **REQUISITO OBLIGATORIO Y CRÍTICO (ORDEN DE EJECUCIÓN):**  

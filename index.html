@@ -38,7 +38,7 @@
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
     <style>
         body {
             background-color: #070b12;
@@ -111,6 +111,23 @@
                             <span class="px-2 py-0.5 text-[10px] font-semibold rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">106 Tools</span>
                         </div>
                         <p class="text-[11px] text-slate-400">Automatización de Redes en Tiempo Real con Inteligencia Artificial</p>
+                        
+                        <!-- GitHub-Style Repository Metadata Bar (Badge Public, License, Language, Status) -->
+                        <div class="flex flex-wrap items-center gap-2.5 pt-1.5 text-[11px] text-slate-400">
+                            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20">Public</span>
+                            <span class="inline-flex items-center gap-1 text-slate-300">
+                                <span class="w-2 h-2 rounded-full bg-[#3776AB]"></span>
+                                <span>Python 3.10+ / QtScript</span>
+                            </span>
+                            <span class="inline-flex items-center gap-1 text-slate-300">
+                                <svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
+                                <span>MIT License</span>
+                            </span>
+                            <span class="inline-flex items-center gap-1 text-emerald-400">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                <span>Actualizado recientemente</span>
+                            </span>
+                        </div>
                     </div>
                 </div>
 
@@ -165,36 +182,71 @@
         <!-- ====================================================================================== -->
         <div id="tab-setup" class="tab-content space-y-6">
 
-            <!-- Hero Banner -->
-            <div class="glass-card rounded-2xl p-6 sm:p-8 relative overflow-hidden shadow-2xl border border-cyber-border">
-                <div class="max-w-3xl space-y-4">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md text-xs font-medium bg-cisco-500/10 text-cisco-400 border border-cisco-500/20">
-                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Despliegue en Tiempo Real en la Pantalla Original
-                    </div>
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight leading-tight">
-                        Orquesta Cisco Packet Tracer Mediante Lenguaje Natural
-                    </h2>
-                    <p class="text-slate-300 text-xs sm:text-sm md:text-base leading-relaxed">
-                        Controla el software original de Cisco Packet Tracer con tu agente de IA preferido: crea topologías complejas, inserta tarjetas modulares, cablea dispositivos, configura protocolos (RIP, OSPF, EIGRP, BGP, VLANs, STP, NAT, ACLs, VoIP) y ejecuta diagnósticos en vivo.
-                    </p>
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2">
-                        <div class="bg-cyber-bg/80 border border-cyber-border rounded-xl p-3 text-center">
-                            <div class="text-lg sm:text-xl font-bold text-cisco-400">106</div>
-                            <div class="text-[11px] text-slate-400">Herramientas MCP</div>
+            <!-- Hero Banner (Full Width 12-Column Responsive Grid) -->
+            <div class="glass-card rounded-2xl p-6 sm:p-8 md:p-10 relative overflow-hidden shadow-2xl border border-cyber-border w-full">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center w-full">
+                    
+                    <!-- Left Column: Title, Description & Feature Badges (7 cols) -->
+                    <div class="lg:col-span-7 space-y-4">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md text-xs font-medium bg-cisco-500/10 text-cisco-400 border border-cisco-500/20">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Despliegue en Tiempo Real en la Pantalla Original
                         </div>
-                        <div class="bg-cyber-bg/80 border border-cyber-border rounded-xl p-3 text-center">
-                            <div class="text-lg sm:text-xl font-bold text-emerald-400">74+</div>
-                            <div class="text-[11px] text-slate-400">Modelos de Hardware</div>
-                        </div>
-                        <div class="bg-cyber-bg/80 border border-cyber-border rounded-xl p-3 text-center">
-                            <div class="text-lg sm:text-xl font-bold text-purple-400">15</div>
-                            <div class="text-[11px] text-slate-400">Tipos de Cableado</div>
-                        </div>
-                        <div class="bg-cyber-bg/80 border border-cyber-border rounded-xl p-3 text-center">
-                            <div class="text-lg sm:text-xl font-bold text-amber-400">Dual</div>
-                            <div class="text-[11px] text-slate-400">HTTP + File Bridge</div>
+                        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white tracking-tight leading-tight">
+                            Orquesta Cisco Packet Tracer Mediante Lenguaje Natural
+                        </h2>
+                        <p class="text-slate-300 text-xs sm:text-sm md:text-base leading-relaxed">
+                            Controla el software original de Cisco Packet Tracer con tu agente de IA preferido: crea topologías complejas, inserta tarjetas modulares, cablea dispositivos, configura protocolos (RIP, OSPF, EIGRP, BGP, VLANs, STP, NAT, ACLs, VoIP) y ejecuta diagnósticos en vivo.
+                        </p>
+                        
+                        <!-- Protocol Capability Pills -->
+                        <div class="flex flex-wrap items-center gap-1.5 pt-1 text-[11px]">
+                            <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700 font-mono">OSPFv2 / OSPFv3</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700 font-mono">BGP (eBGP/iBGP)</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700 font-mono">VLANs 802.1Q</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700 font-mono">EtherChannel</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700 font-mono">NAT / PAT</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700 font-mono">ACLs Ext/Std</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700 font-mono">VoIP CME</span>
+                            <span class="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700 font-mono">IoT Sensors</span>
                         </div>
                     </div>
+
+                    <!-- Right Column: 4 Full-Width Metric Cards & Socket Bridge Status (5 cols) -->
+                    <div class="lg:col-span-5 space-y-3.5 w-full">
+                        <div class="grid grid-cols-2 gap-3 w-full">
+                            <div class="bg-cyber-bg/90 border border-cyber-border rounded-xl p-4 text-center transition-all hover:border-cisco-500/50 hover:bg-slate-900">
+                                <div class="text-2xl sm:text-3xl font-extrabold text-cisco-400">106</div>
+                                <div class="text-xs font-semibold text-white mt-0.5">Herramientas MCP</div>
+                                <div class="text-[10px] text-slate-400 mt-0.5">Automatización Total</div>
+                            </div>
+                            <div class="bg-cyber-bg/90 border border-cyber-border rounded-xl p-4 text-center transition-all hover:border-emerald-500/50 hover:bg-slate-900">
+                                <div class="text-2xl sm:text-3xl font-extrabold text-emerald-400">74+</div>
+                                <div class="text-xs font-semibold text-white mt-0.5">Modelos de Hardware</div>
+                                <div class="text-[10px] text-slate-400 mt-0.5">Routers, Switches, ASA</div>
+                            </div>
+                            <div class="bg-cyber-bg/90 border border-cyber-border rounded-xl p-4 text-center transition-all hover:border-purple-500/50 hover:bg-slate-900">
+                                <div class="text-2xl sm:text-3xl font-extrabold text-purple-400">15</div>
+                                <div class="text-xs font-semibold text-white mt-0.5">Tipos de Cableado</div>
+                                <div class="text-[10px] text-slate-400 mt-0.5">Cobre, Fibra, Serial, Auto</div>
+                            </div>
+                            <div class="bg-cyber-bg/90 border border-cyber-border rounded-xl p-4 text-center transition-all hover:border-amber-500/50 hover:bg-slate-900">
+                                <div class="text-2xl sm:text-3xl font-extrabold text-amber-400">Dual</div>
+                                <div class="text-xs font-semibold text-white mt-0.5">Canal de Bridge</div>
+                                <div class="text-[10px] text-slate-400 mt-0.5">TCP :4242 + File Mailbox</div>
+                            </div>
+                        </div>
+
+                        <!-- Socket Bridge Status Pill -->
+                        <div class="p-3 rounded-xl bg-slate-900/90 border border-cyber-border flex items-center justify-between text-xs font-mono">
+                            <div class="flex items-center gap-2">
+                                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                                <span class="text-slate-300">Socket Listener:</span>
+                                <span class="text-white font-bold">127.0.0.1:4242</span>
+                            </div>
+                            <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-sans font-semibold">Listo</span>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
@@ -206,21 +258,60 @@
                 </div>
 
                 <div class="grid grid-cols-1 gap-4">
-                    <!-- Step 1 -->
+                    <!-- Step 1: Instalación (Automatizada vs Manual) -->
                     <div class="glass-card p-5 rounded-xl border border-cyber-border transition-all hover:border-cisco-500/40">
                         <div class="flex items-start gap-4">
                             <div class="w-8 h-8 rounded-lg bg-cisco-500/10 border border-cisco-500/30 text-cisco-400 font-bold flex items-center justify-center shrink-0">1</div>
-                            <div class="space-y-2 flex-1">
+                            <div class="space-y-3 flex-1">
                                 <div class="flex items-center justify-between">
-                                    <h4 class="font-semibold text-white text-sm sm:text-base">Instalar Dependencias de Python</h4>
+                                    <h4 class="font-semibold text-white text-sm sm:text-base">Instalar el Proyecto (Automatizado en 1 Clic vs. Manual Paso a Paso)</h4>
                                     <input type="checkbox" onchange="updateProgress()" class="step-check w-5 h-5 rounded border-slate-700 bg-cyber-bg text-cisco-500">
                                 </div>
-                                <p class="text-xs sm:text-sm text-slate-300">Abre tu terminal en la carpeta del proyecto y ejecuta:</p>
-                                <div class="bg-cyber-bg border border-cyber-border rounded-lg p-3 code-font text-xs text-emerald-400 flex items-center justify-between">
-                                    <code>pip install -r requirements.txt</code>
-                                    <button onclick="copyToClipboard('pip install -r requirements.txt', this)" class="text-slate-400 hover:text-white px-2.5 py-1 rounded bg-slate-800 text-xs">Copiar</button>
+
+                                <!-- Comparativa Visual: Automatizado vs Manual -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
+                                    <!-- Opción 1: Automatizada (Recomendada) -->
+                                    <div class="p-3.5 rounded-xl bg-cisco-500/10 border border-cisco-500/40 space-y-2">
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-xs font-bold text-cisco-400 flex items-center gap-1.5">
+                                                <span>⚡</span>
+                                                <span>Opción A: 100% Automatizada (¡Recomendada!)</span>
+                                            </span>
+                                            <span class="px-2 py-0.5 text-[9px] font-bold uppercase rounded bg-cisco-500 text-white">1 Clic</span>
+                                        </div>
+                                        <p class="text-[11px] text-slate-300 leading-relaxed">
+                                            <strong>¡No necesitas hacer nada línea a línea a mano!</strong> Simplemente ejecuta el archivo correspondiente y éste actualizará pip, instalará todas las dependencias y ejecutará <code class="text-white font-mono">setup_project.py</code> automáticamente:
+                                        </p>
+                                        <div class="space-y-1.5 pt-1 text-[11px]">
+                                            <div class="bg-cyber-bg p-2 rounded-lg border border-cyber-border flex items-center justify-between font-mono">
+                                                <span>🪟 En Windows: <strong class="text-emerald-400">Doble clic en install.bat</strong></span>
+                                            </div>
+                                            <div class="bg-cyber-bg p-2 rounded-lg border border-cyber-border flex items-center justify-between font-mono">
+                                                <span>🐧 En Linux/Mac: <strong class="text-purple-400">bash install.sh</strong></span>
+                                                <button onclick="copyToClipboard('bash install.sh', this)" class="text-slate-400 hover:text-white px-2 py-0.5 rounded bg-slate-800 text-[10px]">Copiar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Opción 2: Manual paso a paso -->
+                                    <div class="p-3.5 rounded-xl bg-slate-900/80 border border-cyber-border space-y-2">
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-xs font-bold text-slate-300 flex items-center gap-1.5">
+                                                <span>🛠️</span>
+                                                <span>Opción B: Despliegue Manual Paso a Paso</span>
+                                            </span>
+                                            <span class="px-2 py-0.5 text-[9px] font-medium rounded bg-slate-800 text-slate-400">Terminal</span>
+                                        </div>
+                                        <p class="text-[11px] text-slate-400 leading-relaxed">
+                                            Si prefieres no usar los archivos automatizados y deseas ejecutar cada comando tú mismo a mano en tu terminal:
+                                        </p>
+                                        <div class="bg-cyber-bg border border-cyber-border rounded-lg p-2 font-mono text-[11px] text-emerald-400 space-y-1">
+                                            <div>python -m pip install -r requirements.txt</div>
+                                            <div class="text-amber-300">python setup_project.py</div>
+                                        </div>
+                                        <p class="text-[10px] text-slate-400">*(El script <code class="text-white">install.bat</code> hace esto mismo por ti en 1 segundo)*</p>
+                                    </div>
                                 </div>
-                                <p class="text-[11px] text-slate-400">💡 En Windows también puedes simplemente hacer doble clic sobre <code class="text-cisco-400">install.bat</code>.</p>
                             </div>
                         </div>
                     </div>
@@ -245,8 +336,8 @@
                                 </div>
                                 <p class="text-xs sm:text-sm text-slate-300">Abre una terminal y ejecuta el script listener:</p>
                                 <div class="bg-cyber-bg border border-cyber-border rounded-lg p-3 code-font text-xs text-amber-300 flex items-center justify-between">
-                                    <code>cd pt-mcp-server\src\bridge && python pt_listener.py</code>
-                                    <button onclick="copyToClipboard('cd pt-mcp-server\\src\\bridge && python pt_listener.py', this)" class="text-slate-400 hover:text-white px-2.5 py-1 rounded bg-slate-800 text-xs">Copiar</button>
+                                    <code>cd pt-mcp-server\src\bridge &amp;&amp; python pt_listener.py</code>
+                                    <button onclick="copyToClipboard('cd pt-mcp-server\\src\\bridge &amp;&amp; python pt_listener.py', this)" class="text-slate-400 hover:text-white px-2.5 py-1 rounded bg-slate-800 text-xs">Copiar</button>
                                 </div>
                                 <p class="text-[11px] text-slate-400">
                                     O directamente desde la ruta: <code class="text-amber-400 font-mono">pt-mcp-server\src\bridge>python pt_listener.py</code>. Verás el mensaje: <em class="text-emerald-400 font-mono">"Packet Tracer Listener started on 0.0.0.0:4242"</em>. Deja esa terminal abierta en segundo plano.
@@ -309,80 +400,321 @@
                 </div>
 
                 <!-- Desglose Técnico de Comandos y Archivos de Instalación -->
-                <div class="glass-card p-6 rounded-2xl border border-cyber-border space-y-4 mt-6">
-                    <div class="flex items-center gap-2">
-                        <span class="text-lg">🛠️</span>
-                        <h4 class="text-base sm:text-lg font-bold text-white tracking-tight">Desglose Técnico: ¿Para qué sirve cada archivo y comando?</h4>
+                <div class="glass-card p-6 rounded-2xl border border-cyber-border space-y-5 mt-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-cyber-border pb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xl">📦</span>
+                            <div>
+                                <h4 class="text-base sm:text-lg font-bold text-white tracking-tight">Scripts de Instalación (.bat / .sh) vs. Modo Manual Paso a Paso</h4>
+                                <p class="text-[11px] text-slate-400">Inspecciona el código fuente exacto línea por línea o realiza la instalación de forma 100% manual.</p>
+                            </div>
+                        </div>
+
+                        <!-- Pill selector for install scripts -->
+                        <div class="flex items-center gap-1.5 bg-cyber-bg p-1 rounded-lg border border-cyber-border text-xs w-fit">
+                            <button type="button" onclick="showScriptTab('bat')" id="btn-tab-bat" class="px-3 py-1 rounded-md font-semibold bg-cisco-500 text-white transition-all">install.bat (Win)</button>
+                            <button type="button" onclick="showScriptTab('sh')" id="btn-tab-sh" class="px-3 py-1 rounded-md font-medium text-slate-400 hover:text-white transition-all">install.sh (Linux/Mac)</button>
+                            <button type="button" onclick="showScriptTab('manual')" id="btn-tab-manual" class="px-3 py-1 rounded-md font-medium text-slate-400 hover:text-white transition-all">🖐️ Modo Manual</button>
+                        </div>
                     </div>
-                    <p class="text-xs text-slate-300">
-                        Cada elemento del repositorio cumple un rol específico en el ciclo de vida de la orquestación:
-                    </p>
 
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-                        <!-- install.bat -->
-                        <div class="p-4 rounded-xl bg-cyber-bg/80 border border-cyber-border space-y-1.5">
-                            <div class="flex items-center justify-between">
-                                <span class="font-bold text-cisco-400 font-mono">install.bat</span>
-                                <span class="px-2 py-0.5 text-[10px] font-semibold rounded bg-cisco-500/10 text-cisco-300">Windows 1-Clic</span>
-                            </div>
-                            <p class="text-slate-300 text-[11px] leading-relaxed">
-                                Script de automatización batch para Windows. Actualiza el gestor de paquetes <code class="text-emerald-400">pip</code>, instala las dependencias de <code class="text-emerald-400">requirements.txt</code> y ejecuta <code class="text-cisco-400">setup_project.py</code> para configurar las rutas locales sin intervención manual.
+                    <!-- Callout Explicativo: Por qué usar el script vs a mano -->
+                    <div class="p-3.5 rounded-xl bg-cisco-500/10 border border-cisco-500/30 text-xs text-slate-200 flex items-start gap-2.5">
+                        <span class="text-lg leading-none">💡</span>
+                        <div class="space-y-1 text-[11px] leading-relaxed">
+                            <strong class="text-cisco-300 font-semibold text-xs">¿Por qué usar estos documentos en lugar de hacerlo a mano?</strong>
+                            <p class="text-slate-300">
+                                Los scripts <code class="text-white font-mono font-bold">install.bat</code> e <code class="text-white font-mono font-bold">install.sh</code> existen precisamente para <strong>automatizar todo el despliegue en un solo paso</strong> y evitar que tengas que escribir comandos línea por línea en tu terminal. Al ejecutarlos, ellos realizan de manera secuencial la actualización de pip, la descarga de <code class="text-white">requirements.txt</code> y la ejecución de <code class="text-white font-mono">setup_project.py</code> sin intervención humana. Solo debes usar el <strong>Modo Manual</strong> si deseas personalizar el entorno, auditar el código o si estás en una terminal restringida.
                             </p>
                         </div>
+                    </div>
 
-                        <!-- install.sh -->
-                        <div class="p-4 rounded-xl bg-cyber-bg/80 border border-cyber-border space-y-1.5">
-                            <div class="flex items-center justify-between">
-                                <span class="font-bold text-cisco-400 font-mono">install.sh</span>
-                                <span class="px-2 py-0.5 text-[10px] font-semibold rounded bg-purple-500/10 text-purple-300">Linux / macOS / WSL</span>
+                    <!-- SUB-PANEL 1: install.bat -->
+                    <div id="script-panel-bat" class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-mono font-semibold text-cisco-400">Código Fuente Completo de `install.bat` (Windows Batch):</span>
+                            <button onclick="copyToClipboard(document.getElementById('code-install-bat').textContent, this)" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-2.5 py-1 rounded">Copiar .bat</button>
+                        </div>
+                        <pre id="code-install-bat" class="p-4 rounded-xl bg-cyber-bg border border-cyber-border text-xs font-mono text-emerald-300 overflow-x-auto no-scrollbar">@echo off
+REM ==============================================================================
+REM Agent MCP - Cisco Packet Tracer - Windows Automated Setup
+REM Desarrollado por: Ing. Helton Smith Bustos Sáez
+REM Magíster en Full Stack | Experto en Ciberseguridad e Inteligencia Artificial
+REM ==============================================================================
+
+echo ==============================================================================
+echo Instalando dependencias de Agent MCP - Cisco Packet Tracer...
+echo Desarrollado por: Ing. Helton Smith Bustos Saez
+echo ==============================================================================
+
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+
+echo.
+echo Generando configuracion dinamica para este equipo...
+python setup_project.py
+
+echo.
+echo Proceso completado. Puedes abrir 'index.html' en tu navegador para ver la guia visual.
+pause</pre>
+
+                        <!-- Tabla Línea por Línea -->
+                        <div class="space-y-2">
+                            <h5 class="text-xs font-bold text-slate-200">Explicación Técnica Línea por Línea (`install.bat`):</h5>
+                            <div class="overflow-x-auto rounded-xl border border-cyber-border">
+                                <table class="w-full text-[11px] text-left text-slate-300">
+                                    <thead class="text-xs text-cisco-400 bg-cyber-bg/90 border-b border-cyber-border font-mono">
+                                        <tr>
+                                            <th class="py-2 px-3 w-16">Línea</th>
+                                            <th class="py-2 px-3 w-64">Código</th>
+                                            <th class="py-2 px-3">Propósito y Función Técnica</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-cyber-border font-mono">
+                                        <tr class="hover:bg-slate-800/30">
+                                            <td class="py-2 px-3 text-amber-400 font-bold">1</td>
+                                            <td class="py-2 px-3 text-emerald-300">@echo off</td>
+                                            <td class="py-2 px-3 font-sans">Desactiva el eco de comandos. Evita que la terminal imprima cada instrucción antes de ejecutarla, logrando una consola limpia y profesional.</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-800/30">
+                                            <td class="py-2 px-3 text-amber-400 font-bold">2 - 6</td>
+                                            <td class="py-2 px-3 text-slate-400">REM ...</td>
+                                            <td class="py-2 px-3 font-sans"><em>(Remark)</em> Comentarios internos que no se ejecutan. Documentan la autoría, título profesional y alcance del proyecto.</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-800/30">
+                                            <td class="py-2 px-3 text-amber-400 font-bold">8 - 11</td>
+                                            <td class="py-2 px-3 text-emerald-300">echo ...</td>
+                                            <td class="py-2 px-3 font-sans">Imprime en pantalla el encabezado y banner de bienvenida para el usuario.</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-800/30">
+                                            <td class="py-2 px-3 text-amber-400 font-bold">13</td>
+                                            <td class="py-2 px-3 text-cyan-300">python -m pip install --upgrade pip</td>
+                                            <td class="py-2 px-3 font-sans">Actualiza el gestor <code class="text-white">pip</code> a la versión más reciente a través del intérprete del sistema para evitar incompatibilidades de certificados o ruedas precompiladas.</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-800/30">
+                                            <td class="py-2 px-3 text-amber-400 font-bold">14</td>
+                                            <td class="py-2 px-3 text-cyan-300">python -m pip install -r requirements.txt</td>
+                                            <td class="py-2 px-3 font-sans">Instala las dependencias nucleares: <code class="text-white">mcp</code> (protocolo JSON-RPC), <code class="text-white">pydantic</code> (validación estricta de esquemas) y <code class="text-white">typing-extensions</code>.</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-800/30">
+                                            <td class="py-2 px-3 text-amber-400 font-bold">16</td>
+                                            <td class="py-2 px-3 text-emerald-300">echo.</td>
+                                            <td class="py-2 px-3 font-sans">Imprime un salto de línea en blanco en la consola para ordenar visualmente la salida.</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-800/30">
+                                            <td class="py-2 px-3 text-amber-400 font-bold">18</td>
+                                            <td class="py-2 px-3 text-amber-300">python setup_project.py</td>
+                                            <td class="py-2 px-3 font-sans">Ejecuta el script de auto-detección que mapea la ruta absoluta de Python (<code class="text-white">sys.executable</code>) y de la extensión <code class="text-white">.pts</code>, emitiendo los bloques de configuración listos para usar.</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-800/30">
+                                            <td class="py-2 px-3 text-amber-400 font-bold">22</td>
+                                            <td class="py-2 px-3 text-purple-300">pause</td>
+                                            <td class="py-2 px-3 font-sans">Detiene la ejecución mostrando <em>"Presione una tecla para continuar . . ."</em>, impidiendo que la ventana de Windows se cierre sola tras terminar para que el usuario pueda auditar el log.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <p class="text-slate-300 text-[11px] leading-relaxed">
-                                Script de shell POSIX equivalente para entornos Unix/Linux y macOS. Da permisos de ejecución, valida la versión de Python instalada y prepara las librerías del servidor MCP en el sistema.
-                            </p>
+                        </div>
+                    </div>
+
+                    <!-- SUB-PANEL 2: install.sh -->
+                    <div id="script-panel-sh" class="space-y-4 hidden">
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-mono font-semibold text-purple-400">Código Fuente Completo de `install.sh` (Linux / macOS / WSL Bash):</span>
+                            <button onclick="copyToClipboard(document.getElementById('code-install-sh').textContent, this)" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 px-2.5 py-1 rounded">Copiar .sh</button>
+                        </div>
+                        <pre id="code-install-sh" class="p-4 rounded-xl bg-cyber-bg border border-cyber-border text-xs font-mono text-purple-300 overflow-x-auto no-scrollbar">#!/usr/bin/env bash
+# ==============================================================================
+# Agent MCP - Cisco Packet Tracer - Linux/macOS Automated Setup
+# Desarrollado por: Ing. Helton Smith Bustos Sáez
+# Magíster en Full Stack | Experto en Ciberseguridad e Inteligencia Artificial
+# ==============================================================================
+
+echo "=============================================================================="
+echo "Instalando dependencias de Agent MCP - Cisco Packet Tracer..."
+echo "Desarrollado por: Ing. Helton Smith Bustos Sáez"
+echo "=============================================================================="
+
+python3 -m pip install --upgrade pip
+python3 -m pip install -r requirements.txt
+
+echo ""
+echo "Generando configuración dinámica para este equipo..."
+python3 setup_project.py
+
+echo ""
+echo "Proceso completado. Puedes abrir 'index.html' en tu navegador para ver la guía visual."</pre>
+
+                        <!-- Tabla Línea por Línea -->
+                        <div class="space-y-2">
+                            <h5 class="text-xs font-bold text-slate-200">Explicación Técnica Línea por Línea (`install.sh`):</h5>
+                            <div class="overflow-x-auto rounded-xl border border-cyber-border">
+                                <table class="w-full text-[11px] text-left text-slate-300">
+                                    <thead class="text-xs text-purple-400 bg-cyber-bg/90 border-b border-cyber-border font-mono">
+                                        <tr>
+                                            <th class="py-2 px-3 w-16">Línea</th>
+                                            <th class="py-2 px-3 w-64">Código</th>
+                                            <th class="py-2 px-3">Propósito y Función Técnica</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-cyber-border font-mono">
+                                        <tr class="hover:bg-slate-800/30">
+                                            <td class="py-2 px-3 text-amber-400 font-bold">1</td>
+                                            <td class="py-2 px-3 text-emerald-300">#!/usr/bin/env bash</td>
+                                            <td class="py-2 px-3 font-sans"><em>Shebang</em>. Instruye al sistema Unix a ejecutar este script utilizando el binario <code class="text-white">bash</code> resuelto en el <code class="text-white">PATH</code> del entorno del usuario.</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-800/30">
+                                            <td class="py-2 px-3 text-amber-400 font-bold">2 - 6</td>
+                                            <td class="py-2 px-3 text-slate-400"># ...</td>
+                                            <td class="py-2 px-3 font-sans">Comentarios de documentación con la autoría y grado del autor.</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-800/30">
+                                            <td class="py-2 px-3 text-amber-400 font-bold">13</td>
+                                            <td class="py-2 px-3 text-cyan-300">python3 -m pip install --upgrade pip</td>
+                                            <td class="py-2 px-3 font-sans">Actualiza el gestor pip en el binario estándar <code class="text-white">python3</code> de Linux/macOS.</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-800/30">
+                                            <td class="py-2 px-3 text-amber-400 font-bold">14</td>
+                                            <td class="py-2 px-3 text-cyan-300">python3 -m pip install -r requirements.txt</td>
+                                            <td class="py-2 px-3 font-sans">Instala en el entorno de Python las dependencias de red de <code class="text-white">requirements.txt</code>.</td>
+                                        </tr>
+                                        <tr class="hover:bg-slate-800/30">
+                                            <td class="py-2 px-3 text-amber-400 font-bold">18</td>
+                                            <td class="py-2 px-3 text-amber-300">python3 setup_project.py</td>
+                                            <td class="py-2 px-3 font-sans">Ejecuta la introspección del proyecto en rutas POSIX para emitir la configuración JSON de los agentes.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SUB-PANEL 3: Modo Manual -->
+                    <div id="script-panel-manual" class="space-y-4 hidden">
+                        <div class="p-4 rounded-xl bg-cyber-bg/90 border border-cisco-500/30 space-y-3">
+                            <div class="flex items-center gap-2 text-cisco-400 font-semibold text-xs">
+                                <span>🖐️</span>
+                                <span>Procedimiento 100% Manual (Paso a Paso en tu Terminal sin Scripts)</span>
+                            </div>
+                            <p class="text-xs text-slate-300">Si por políticas de seguridad o preferencia personal no deseas ejecutar archivos <code class="text-white font-mono">.bat</code> o <code class="text-white font-mono">.sh</code>, ejecuta estos 4 comandos uno por uno:</p>
+                            
+                            <div class="space-y-2 text-xs font-mono">
+                                <div class="bg-slate-900 p-2.5 rounded-lg border border-cyber-border flex items-center justify-between">
+                                    <span class="text-slate-300"><span class="text-cisco-400"># 1. Navega a la carpeta del proyecto:</span><br>cd "C:\Users\Usuario\Desktop\MCP Server CKEIMY"</span>
+                                    <button onclick="copyToClipboard('cd C:\\Users\\Usuario\\Desktop\\MCP Server CKEIMY', this)" class="text-slate-400 hover:text-white px-2 py-1 rounded bg-slate-800 text-[10px]">Copiar</button>
+                                </div>
+                                <div class="bg-slate-900 p-2.5 rounded-lg border border-cyber-border flex items-center justify-between">
+                                    <span class="text-slate-300"><span class="text-cisco-400"># 2. Actualiza el gestor pip:</span><br>python -m pip install --upgrade pip</span>
+                                    <button onclick="copyToClipboard('python -m pip install --upgrade pip', this)" class="text-slate-400 hover:text-white px-2 py-1 rounded bg-slate-800 text-[10px]">Copiar</button>
+                                </div>
+                                <div class="bg-slate-900 p-2.5 rounded-lg border border-cyber-border flex items-center justify-between">
+                                    <span class="text-slate-300"><span class="text-cisco-400"># 3. Instala los paquetes requeridos:</span><br>python -m pip install -r requirements.txt</span>
+                                    <button onclick="copyToClipboard('python -m pip install -r requirements.txt', this)" class="text-slate-400 hover:text-white px-2 py-1 rounded bg-slate-800 text-[10px]">Copiar</button>
+                                </div>
+                                <div class="bg-slate-900 p-2.5 rounded-lg border border-cyber-border flex items-center justify-between">
+                                    <span class="text-slate-300"><span class="text-cisco-400"># 4. Genera la configuración personalizada para tus Agentes:</span><br>python setup_project.py</span>
+                                    <button onclick="copyToClipboard('python setup_project.py', this)" class="text-slate-400 hover:text-white px-2 py-1 rounded bg-slate-800 text-[10px]">Copiar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DIAGRAMAS VISUALES Y FLUJOS DE ARQUITECTURA -->
+                <div class="glass-card p-6 rounded-2xl border border-cyber-border space-y-6 mt-6">
+                    <div class="flex items-center gap-2 border-b border-cyber-border pb-3">
+                        <span class="text-xl">📊</span>
+                        <div>
+                            <h4 class="text-base sm:text-lg font-bold text-white tracking-tight">Diagramas de Flujo y Ciclo de Vida en Tiempo Real</h4>
+                            <p class="text-[11px] text-slate-400">Visualización gráfica del transporte de paquetes, máquina de estados FSM y secuencia de ejecución.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Diagrama 1: Flujo de Secuencia Visual -->
+                        <div class="p-4 rounded-xl bg-cyber-bg/90 border border-cyber-border space-y-3">
+                            <div class="flex items-center justify-between">
+                                <span class="text-xs font-bold text-cisco-400 uppercase tracking-wider">1. Flujo de Comunicación de Extremo a Extremo</span>
+                                <span class="text-[10px] bg-cisco-500/10 text-cisco-300 px-2 py-0.5 rounded border border-cisco-500/20">JSON-RPC / TCP</span>
+                            </div>
+                            
+                            <!-- Visual Graphic Cards Sequence -->
+                            <div class="space-y-2 text-xs">
+                                <div class="flex items-center gap-3 p-2.5 rounded-lg bg-slate-900/90 border border-cyber-border">
+                                    <div class="w-6 h-6 rounded bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-[11px]">1</div>
+                                    <div class="flex-1">
+                                        <div class="font-semibold text-white">Agente de IA (Antigravity / Codex / Claude)</div>
+                                        <div class="text-[11px] text-slate-400">El usuario pide crear un Router 2911 y configurar OSPF.</div>
+                                    </div>
+                                    <span class="text-[10px] text-purple-300 font-mono">Prompt Natural</span>
+                                </div>
+                                <div class="text-center text-slate-500 text-xs py-0.5">↓ (vía STDIO JSON-RPC)</div>
+                                <div class="flex items-center gap-3 p-2.5 rounded-lg bg-slate-900/90 border border-cyber-border">
+                                    <div class="w-6 h-6 rounded bg-cisco-500/20 text-cisco-400 flex items-center justify-center font-bold text-[11px]">2</div>
+                                    <div class="flex-1">
+                                        <div class="font-semibold text-white">Servidor MCP (run_server.py / main.py)</div>
+                                        <div class="text-[11px] text-slate-400">Valida los esquemas Pydantic y enruta a la herramienta adecuada.</div>
+                                    </div>
+                                    <span class="text-[10px] text-cisco-300 font-mono">106 Tools</span>
+                                </div>
+                                <div class="text-center text-slate-500 text-xs py-0.5">↓ (Socket TCP :4242)</div>
+                                <div class="flex items-center gap-3 p-2.5 rounded-lg bg-slate-900/90 border border-cyber-border">
+                                    <div class="w-6 h-6 rounded bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-[11px]">3</div>
+                                    <div class="flex-1">
+                                        <div class="font-semibold text-white">Bridge Listener (pt_listener.py)</div>
+                                        <div class="text-[11px] text-slate-400">Gestiona el contexto Cisco IOS y envía órdenes a la API de PT.</div>
+                                    </div>
+                                    <span class="text-[10px] text-amber-300 font-mono">FSM Manager</span>
+                                </div>
+                                <div class="text-center text-slate-500 text-xs py-0.5">↓ (Inyección en Lienzo Gráfico)</div>
+                                <div class="flex items-center gap-3 p-2.5 rounded-lg bg-slate-900/90 border border-emerald-500/30 bg-emerald-500/5">
+                                    <div class="w-6 h-6 rounded bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-[11px]">4</div>
+                                    <div class="flex-1">
+                                        <div class="font-semibold text-white">Cisco Packet Tracer (GUI en Vivo)</div>
+                                        <div class="text-[11px] text-emerald-300">Aparece el router, se cablean los puertos y el IOS responde con ping exitoso.</div>
+                                    </div>
+                                    <span class="text-[10px] text-emerald-400 font-mono">100% Gráfico</span>
+                                </div>
+                            </div>
                         </div>
 
-                        <!-- pip install -->
-                        <div class="p-4 rounded-xl bg-cyber-bg/80 border border-cyber-border space-y-1.5">
+                        <!-- Diagrama 2: FSM Cisco IOS Mode Transitions -->
+                        <div class="p-4 rounded-xl bg-cyber-bg/90 border border-cyber-border space-y-3">
                             <div class="flex items-center justify-between">
-                                <span class="font-bold text-emerald-400 font-mono">pip install -r requirements.txt</span>
-                                <span class="px-2 py-0.5 text-[10px] font-semibold rounded bg-emerald-500/10 text-emerald-300">Librerías Base</span>
+                                <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">2. Autómata FSM de Modos Cisco IOS</span>
+                                <span class="text-[10px] bg-amber-500/10 text-amber-300 px-2 py-0.5 rounded border border-amber-500/20">Transición Automática</span>
                             </div>
-                            <p class="text-slate-300 text-[11px] leading-relaxed">
-                                Descarga e instala los módulos oficiales: <code class="text-white">mcp</code> (protocolo JSON-RPC), <code class="text-white">pydantic</code> (validación estricta de esquemas de datos) y <code class="text-white">typing-extensions</code> para soportar tipado moderno en todas las versiones de Python.
-                            </p>
-                        </div>
 
-                        <!-- setup_project.py -->
-                        <div class="p-4 rounded-xl bg-cyber-bg/80 border border-cyber-border space-y-1.5">
-                            <div class="flex items-center justify-between">
-                                <span class="font-bold text-amber-400 font-mono">python setup_project.py</span>
-                                <span class="px-2 py-0.5 text-[10px] font-semibold rounded bg-amber-500/10 text-amber-300">Auto-Detección</span>
+                            <div class="space-y-2 text-xs">
+                                <div class="p-2.5 rounded-lg bg-slate-900 border border-slate-700">
+                                    <div class="flex items-center justify-between text-[11px]">
+                                        <span class="font-bold text-slate-200">User EXEC Mode</span>
+                                        <code class="text-slate-400 font-mono">Router&gt;</code>
+                                    </div>
+                                    <div class="text-[10px] text-slate-400 mt-1">Transición requerida: Envía automáticamente <code class="text-cisco-400">enable</code></div>
+                                </div>
+                                <div class="p-2.5 rounded-lg bg-slate-900 border border-cisco-500/40">
+                                    <div class="flex items-center justify-between text-[11px]">
+                                        <span class="font-bold text-cisco-300">Privileged EXEC Mode</span>
+                                        <code class="text-cisco-400 font-mono">Router#</code>
+                                    </div>
+                                    <div class="text-[10px] text-slate-400 mt-1">Ejecuta comandos de diagnóstico: <code class="text-emerald-400">show ip route</code>, <code class="text-emerald-400">ping</code>, <code class="text-emerald-400">traceroute</code></div>
+                                </div>
+                                <div class="p-2.5 rounded-lg bg-slate-900 border border-amber-500/40">
+                                    <div class="flex items-center justify-between text-[11px]">
+                                        <span class="font-bold text-amber-300">Global Configuration Mode</span>
+                                        <code class="text-amber-400 font-mono">Router(config)#</code>
+                                    </div>
+                                    <div class="text-[10px] text-slate-400 mt-1">Configuración global: <code class="text-amber-300">hostname</code>, <code class="text-amber-300">ip route</code>, <code class="text-amber-300">vlan 10</code>, <code class="text-amber-300">access-list</code></div>
+                                </div>
+                                <div class="p-2.5 rounded-lg bg-slate-900 border border-purple-500/40">
+                                    <div class="flex items-center justify-between text-[11px]">
+                                        <span class="font-bold text-purple-300">Sub-Interface & Routing Modes</span>
+                                        <code class="text-purple-400 font-mono">Router(config-if)# / (config-router)#</code>
+                                    </div>
+                                    <div class="text-[10px] text-slate-400 mt-1">Configura interfaces IP, subinterfaces dot1Q, procesos OSPF/BGP y pools DHCP.</div>
+                                </div>
                             </div>
-                            <p class="text-slate-300 text-[11px] leading-relaxed">
-                                Asistente de introspección que detecta dinámicamente la ruta exacta de tu ejecutable Python (<code class="text-white">sys.executable</code>) y genera en pantalla los bloques JSON exactos con rutas absolutas para Antigravity, ChatGPT Codex, Claude y Cursor.
-                            </p>
-                        </div>
-
-                        <!-- pt_listener.py -->
-                        <div class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/40 space-y-1.5">
-                            <div class="flex items-center justify-between">
-                                <span class="font-bold text-amber-300 font-mono">pt-mcp-server\src\bridge>python pt_listener.py</span>
-                                <span class="px-2 py-0.5 text-[10px] font-semibold rounded bg-amber-500/20 text-amber-200">Bridge Socket :4242</span>
-                            </div>
-                            <p class="text-slate-300 text-[11px] leading-relaxed">
-                                <strong>¡El núcleo del enlace en tiempo real!</strong> Abre un servidor TCP en <code class="text-white">0.0.0.0:4242</code> con la máquina de estados de Cisco IOS. <strong>Debe iniciarse antes</strong> de cargar el script en Packet Tracer para que éste pueda acoplarse inmediatamente.
-                            </p>
-                        </div>
-
-                        <!-- run_server.py -->
-                        <div class="p-4 rounded-xl bg-cyber-bg/80 border border-cyber-border space-y-1.5">
-                            <div class="flex items-center justify-between">
-                                <span class="font-bold text-cyan-400 font-mono">python run_server.py</span>
-                                <span class="px-2 py-0.5 text-[10px] font-semibold rounded bg-cyan-500/10 text-cyan-300">Cargador MCP (STDIO)</span>
-                            </div>
-                            <p class="text-slate-300 text-[11px] leading-relaxed">
-                                Proceso que tu cliente de IA (Antigravity, ChatGPT Codex, Claude Desktop, Cursor) ejecuta en segundo plano. Lee y escribe mensajes JSON-RPC por entrada/salida estándar (<code class="text-white">stdio</code>), exponiendo las herramientas de red al LLM.
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -708,6 +1040,31 @@ Crea 1 switch 2960, conecta 1 PC y 1 Server-PT. Configura el servidor con IP 192
             if (activeBtn) {
                 activeBtn.classList.add('tab-active');
                 activeBtn.classList.remove('text-slate-300');
+            }
+        }
+
+        function showScriptTab(tabType) {
+            // Ocultar todos los subpaneles de script
+            document.getElementById('script-panel-bat').classList.add('hidden');
+            document.getElementById('script-panel-sh').classList.add('hidden');
+            document.getElementById('script-panel-manual').classList.add('hidden');
+
+            // Resetear estilos de botones
+            ['bat', 'sh', 'manual'].forEach(type => {
+                const btn = document.getElementById('btn-tab-' + type);
+                if (btn) {
+                    btn.classList.remove('bg-cisco-500', 'text-white');
+                    btn.classList.add('text-slate-400');
+                }
+            });
+
+            // Activar el panel y botón seleccionado
+            const activePanel = document.getElementById('script-panel-' + tabType);
+            const activeBtn = document.getElementById('btn-tab-' + tabType);
+            if (activePanel) activePanel.classList.remove('hidden');
+            if (activeBtn) {
+                activeBtn.classList.add('bg-cisco-500', 'text-white');
+                activeBtn.classList.remove('text-slate-400');
             }
         }
     </script>
